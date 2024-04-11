@@ -2,7 +2,6 @@ package com.lutech.videodownloader.utils
 
 import android.content.Context
 import android.view.View
-import com.lutech.videodownloader.database.DataFromDevice
 import com.lutech.videodownloader.scenes.language.preference.Language
 
 val Context.permissionManager: PermissionManager

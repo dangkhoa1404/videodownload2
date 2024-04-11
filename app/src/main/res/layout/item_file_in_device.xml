@@ -5,7 +5,7 @@
     android:id="@+id/layoutItemVideo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_marginHorizontal="@dimen/_5sdp"
     android:layout_marginTop="@dimen/_10sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,7 +74,6 @@
             android:layout_marginStart="@dimen/_8sdp"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/clItemLayout"
             app:layout_constraintEnd_toStartOf="@+id/ivOption"
             app:layout_constraintStart_toEndOf="@+id/cvImgPath"
             app:layout_constraintTop_toTopOf="@+id/clItemLayout">

@@ -1,17 +1,14 @@
 package com.lutech.videodownloader.utils
 
 import android.os.Environment
-import androidx.lifecycle.MutableLiveData
-import com.lutech.videodownloader.R
 import com.lutech.videodownloader.model.VideoFile
 import java.io.File
-
 
 object Constants {
 
     const val email_feedback = "teammarketing@lutech.ltd"
 
-    const val APP_NAME = "video_downloader"
+//    const val APP_NAME = "video_downloader"
 
     const val KEY_APP_OPEN = "keyappopen"
     const val APP_PACKAGE_DOWNLOAD = "app_package_download"
@@ -62,4 +59,6 @@ object Constants {
     const val VIEW_TYPE: String = "VIEW_TYPE"
 
     const val IS_FROM_HOME_ACTIVITY: String = "IS_FROM_MAIN_ACTIVITY"
+
+    const val ALL_FILE: String = "All"
 }

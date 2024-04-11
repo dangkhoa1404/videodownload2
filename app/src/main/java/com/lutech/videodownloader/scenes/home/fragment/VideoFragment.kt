@@ -2,12 +2,11 @@ package com.lutech.videodownloader.scenes.home.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.flexbox.FlexDirection
@@ -24,10 +23,15 @@ import com.lutech.videodownloader.scenes.home.adapter.FolderAdapter
 import com.lutech.videodownloader.scenes.home.adapter.VideoAdapter
 import com.lutech.videodownloader.scenes.home.viewmodel.HomeViewModel
 import com.lutech.videodownloader.scenes.home.viewmodel.VideoViewModel
+import com.lutech.videodownloader.utils.Constants
 import com.lutech.videodownloader.utils.Utils
 import com.lutech.videodownloader.utils.gone
 import com.lutech.videodownloader.utils.sharedPreference
 import com.lutech.videodownloader.utils.visible
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 
 class VideoFragment : Fragment() {
@@ -47,6 +51,10 @@ class VideoFragment : Fragment() {
     private var mListFolderVideoDialog : BottomSheetDialog? = null
 
     private var mFolderAdapter : FolderAdapter? = null
+
+    private var mVideoAdapter : VideoAdapter? = null
+
+    private var mNameFolder : String = Constants.ALL_FILE
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,12 +90,27 @@ class VideoFragment : Fragment() {
                 mListFolderVideoDialog!!.show()
             }
         }
+
+        mVideoBinding.llFolderFilter.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.Main) {
+                gone(mVideoBinding.clFilter)
+                withContext(Dispatchers.IO) {
+                    mNameFolder = Constants.ALL_FILE
+                    if(mFolderAdapter!!.mPosCheckCurrentFolder != 0) {
+                        mVideoAdapter!!.filterListVideo(mListVideo)
+                    }
+                }
+                val mOldPos = mFolderAdapter!!.mPosCheckCurrentFolder
+                mFolderAdapter!!.mPosCheckCurrentFolder = 0
+                mFolderAdapter!!.notifyItemChanged(mOldPos)
+                mFolderAdapter!!.notifyItemChanged(mFolderAdapter!!.mPosCheckCurrentFolder)
+            }
+        }
     }
 
     private fun setListenerVM() {
         mHomeVM.isVideoGranted.observe(viewLifecycleOwner) {
             if (it) {
-                Log.d("===>204924", "all video: ")
                 mVideoVM.getListVideos(mContext!!, mVideoBinding.sflLoadingData.root)
                 mVideoVM.getAllFoldersVideos(mContext!!)
             } else {
@@ -111,16 +134,29 @@ class VideoFragment : Fragment() {
                     mVideoBinding.tvAmountOfMemory.text = Utils.formatSizeFile(totalMemory.toDouble())
                 }
             }
+            setTypeViewOfRCV()
             setListVideoView()
         }
 
         mVideoVM.folderVideoLists.observe(viewLifecycleOwner) {
             mVideoBinding.tvTotalFolders.text = it.size.toString()
 
-            it.add(0, Folder("All"))
+            it.add(0, Folder(Constants.ALL_FILE))
 
             setViewListFolderVideoDialog(it)
         }
+
+        mHomeVM.newViewRCV.observe(viewLifecycleOwner) {
+            setTypeViewOfRCV()
+            setListVideoView()
+        }
+    }
+
+    private fun setTypeViewOfRCV() {
+        mVideoBinding.rcvListVideos.layoutManager = if(mContext!!.sharedPreference.viewType == 1)
+            LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL ,false)
+        else
+            GridLayoutManager(mContext, 2)
     }
 
     private fun setListVideoView() {
@@ -128,58 +164,74 @@ class VideoFragment : Fragment() {
             visible(mVideoBinding.llVideoNotFound.root)
         } else {
             gone(mVideoBinding.llVideoNotFound.root)
-            mVideoBinding.rcvListVideos.apply {
-                layoutManager = if(mContext!!.sharedPreference.viewType == 1)
-                    LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL ,false)
-                else
-                    GridLayoutManager(mContext, 2)
 
-                adapter = VideoAdapter(mContext!!, mContext!!.sharedPreference.viewType, mListVideo, object : VideoAdapter.OnItemVideoListener {
+            mVideoAdapter =
+                VideoAdapter(
+                    mContext!!,
+                    mContext!!.sharedPreference.viewType,
+                    if (mNameFolder == Constants.ALL_FILE) mListVideo else mListVideo.filter { it.parentoOfVideo == mNameFolder},
+                    object : VideoAdapter.OnItemVideoListener {
                         override fun onItemVideoClick(position: Int) {
 
                         }
-
                         override fun onItemPosClick(position: Int) {
 
                         }
-                    })
-            }
+            })
+
+            mVideoBinding.rcvListVideos.adapter = mVideoAdapter
         }
     }
 
     private fun setViewListFolderVideoDialog(mListFolderVideo : List<Folder>) {
-        val mDialogFolderBinding = DialogListFolderBinding.inflate(layoutInflater)
+        lifecycleScope.launch(Dispatchers.Main) {
+            val mDialogFolderBinding = DialogListFolderBinding.inflate(layoutInflater)
 
-        mListFolderVideoDialog = BottomSheetDialog(mContext!!, R.style.BottomSheetDialogTheme)
+            mListFolderVideoDialog = BottomSheetDialog(mContext!!, R.style.BottomSheetDialogTheme)
 
-        mListFolderVideoDialog!!.apply {
-            setContentView(mDialogFolderBinding.root)
-            behavior.maxHeight = resources.displayMetrics.heightPixels / 2
-            behavior.peekHeight = resources.displayMetrics.heightPixels / 2
-        }
+            mListFolderVideoDialog!!.setContentView(mDialogFolderBinding.root)
 
-        mFolderAdapter = FolderAdapter(mContext!!, mListFolderVideo, object : FolderAdapter.OnItemFolderListener {
-            override fun onItemFolderClick(position: Int) {
-                val mOldPos = mFolderAdapter!!.mPosCheckCurrentFolder
+            withContext(Dispatchers.IO) {
+                mFolderAdapter = FolderAdapter(mContext!!, mListFolderVideo, object : FolderAdapter.OnItemFolderListener {
+                    override fun onItemFolderClick(position: Int) {
 
-                mFolderAdapter!!.mPosCheckCurrentFolder = position
+                        val mOldPos = mFolderAdapter!!.mPosCheckCurrentFolder
 
-                if(mOldPos != mFolderAdapter!!.mPosCheckCurrentFolder) {
-                    mFolderAdapter!!.notifyItemChanged(mOldPos)
-                    mFolderAdapter!!.notifyItemChanged(mFolderAdapter!!.mPosCheckCurrentFolder)
+                        mFolderAdapter!!.mPosCheckCurrentFolder = position
+
+                        if(mOldPos != mFolderAdapter!!.mPosCheckCurrentFolder) {
+                            mFolderAdapter!!.notifyItemChanged(mOldPos)
+                            mFolderAdapter!!.notifyItemChanged(mFolderAdapter!!.mPosCheckCurrentFolder)
+
+                            if(mFolderAdapter!!.mPosCheckCurrentFolder == 0) {
+                                gone(mVideoBinding.clFilter)
+                                mNameFolder = Constants.ALL_FILE
+                                mVideoAdapter!!.filterListVideo(mListVideo)
+                            } else {
+                                mVideoBinding.tvNameFolder.text = mListFolderVideo[mFolderAdapter!!.mPosCheckCurrentFolder].folderName
+                                visible(mVideoBinding.clFilter)
+                                mNameFolder = mListFolderVideo[mFolderAdapter!!.mPosCheckCurrentFolder].folderName
+                                mVideoAdapter!!.filterListVideo(mListVideo.filter { it.parentoOfVideo ==  mListFolderVideo[mFolderAdapter!!.mPosCheckCurrentFolder].folderName})
+                            }
+                        }
+
+                        mListFolderVideoDialog!!.dismiss()
+                    }
+                })
+            }
+            mDialogFolderBinding.rcvListFolder.apply {
+                layoutManager = FlexboxLayoutManager(mContext).apply {
+                    flexDirection = FlexDirection.ROW
+                    justifyContent = JustifyContent.FLEX_START
                 }
-
-                mListFolderVideoDialog!!.dismiss()
+                adapter = mFolderAdapter
+                layoutParams.height = resources.displayMetrics.heightPixels / 2
             }
-        })
-
-        mDialogFolderBinding.rcvListFolder.apply {
-            layoutManager = FlexboxLayoutManager(mContext).apply {
-                flexDirection = FlexDirection.ROW
-                justifyContent = JustifyContent.FLEX_START
-            }
-            adapter = mFolderAdapter
-
         }
+    }
+
+    override fun onDestroy() {
+        lifecycleScope.cancel()
+        super.onDestroy()
     }
 }

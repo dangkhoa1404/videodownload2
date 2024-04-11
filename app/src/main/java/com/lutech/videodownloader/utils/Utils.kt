@@ -10,10 +10,12 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Environment
+import android.os.SystemClock
 import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.content.FileProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lutech.videodownloader.R
 import java.io.File
@@ -237,5 +239,25 @@ object Utils {
         resultBuffer.append(" GB")
 
         return resultBuffer.toString()
+    }
+
+    fun shareSingleFile(pathSource: String, context: Context) {
+        val fileToShare = File(pathSource)
+        val fileUri = FileProvider.getUriForFile(context, "com.lutech.videodownloader.provider", fileToShare)
+        val shareIntent = Intent()
+        shareIntent.action = Intent.ACTION_SEND
+        shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri)
+        shareIntent.type = "*/*"
+        context.startActivity(Intent.createChooser(shareIntent, "Share"))
+    }
+
+    private var mLastClickTime: Long = 0L
+
+    fun isClickRecently(delayTime: Long = 2000): Boolean {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < delayTime) {
+            return true
+        }
+        mLastClickTime = SystemClock.elapsedRealtime()
+        return false
     }
 }

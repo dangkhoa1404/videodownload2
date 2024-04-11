@@ -81,56 +81,6 @@ class VideoViewModel : ViewModel() {
         }
     }
 
-    fun getListVideoByFolder(fileDir: File, mViewLoading : View) {
-        viewModelScope.launch {
-            loadingView(mViewLoading, true)
-            val listVideo = arrayListOf<Video>()
-            val files = fileDir.listFiles()
-            withContext(Dispatchers.IO) {
-                if(files != null) {
-                    for (i in files.indices) {
-                        try {
-
-                            if (files[i].exists() && files[i].length() != 0L && Utils.getDurationByPath(files[i].path) >= 1000) {
-                                val video = files[i]
-                                val path = video.path
-                                val name = video.name.substringBeforeLast(".")
-                                val sizePath = Utils.formatSizeFile(video.length().toDouble())
-                                val dateAdded = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
-                                    .format(Date(video.lastModified()))
-                                val parentName = video.parentFile?.name ?: "null"
-                                val duration = DateUtils.formatElapsedTime(Utils.getDurationByPath(video.path) / 1000)
-                                listVideo.add(
-                                    Video(path, name, sizePath, dateAdded, parentName, duration)
-                                )
-                            }
-
-                        } catch (e: IllegalArgumentException) {
-                            e.printStackTrace()
-                        } catch (e: RuntimeException) {
-                            e.printStackTrace()
-                        }
-                    }
-
-                    listVideo.sortWith { track1, track2 ->
-                        val k: Long = File(track2.pathOfVideo).lastModified() - File(track1.pathOfVideo).lastModified()
-                        if (k > 0) {
-                            1
-                        } else if (k == 0L) {
-                            0
-                        } else {
-                            -1
-                        }
-                    }
-                    _listVideoByFolder.postValue(listVideo)
-                } else {
-                    _listVideoByFolder.postValue(arrayListOf())
-                }
-            }
-            loadingView(mViewLoading, false)
-        }
-    }
-
     fun getAllFoldersVideos(context : Context) {
         val tempFolderList = ArrayList<String>()
         val listFoldersVideos = ArrayList<Folder>()
@@ -154,7 +104,7 @@ class VideoViewModel : ViewModel() {
                         parentName.name
                     )
                 )
-                if (!parentName.name.contains(Constants.APP_NAME)) {
+                if (!parentName.name.contains(Constants.APP_NAME_NEW)) {
                     mCount += 1
                 }
             }
@@ -164,11 +114,12 @@ class VideoViewModel : ViewModel() {
             if (Constants.pathApp.exists()) {
                 listFoldersVideos.add(
                     0, Folder(
-                        Constants.APP_NAME
+                        Constants.APP_NAME_NEW
                     )
                 )
             }
         }
+        Log.d("===>204294241241", "listFoldersVideos: " + listFoldersVideos)
         _folderVideoLists.value = listFoldersVideos
     }
 

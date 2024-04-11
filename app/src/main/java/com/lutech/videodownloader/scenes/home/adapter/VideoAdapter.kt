@@ -114,6 +114,11 @@ class VideoAdapter(
         return listVideos.size
     }
 
+    fun filterListVideo(mNewListVideo : List<Video>) {
+        listVideos = mNewListVideo
+        notifyDataSetChanged()
+    }
+
     interface OnItemVideoListener {
         fun onItemVideoClick(position: Int)
         fun onItemPosClick(position: Int)

@@ -3,16 +3,16 @@ package com.lutech.videodownloader.scenes.home.fragment
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lutech.videodownloader.R
 import com.lutech.videodownloader.databinding.DialogListFolderBinding
@@ -28,6 +28,10 @@ import com.lutech.videodownloader.utils.Utils
 import com.lutech.videodownloader.utils.gone
 import com.lutech.videodownloader.utils.sharedPreference
 import com.lutech.videodownloader.utils.visible
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 
 class MusicFragment : Fragment() {
@@ -114,7 +118,7 @@ class MusicFragment : Fragment() {
                     mMusicBinding.tvAmountOfMemory.text = Utils.formatSizeFile(totalMemory.toDouble())
                 }
             }
-            setListVideoView()
+            setListAudioView()
         }
 
         mAudioVM.folderMusicLists.observe(viewLifecycleOwner) {
@@ -124,9 +128,13 @@ class MusicFragment : Fragment() {
 
             setViewListFolderAudioDialog(it)
         }
+
+        mHomeVM.newViewRCV.observe(viewLifecycleOwner) {
+            setListAudioView()
+        }
     }
 
-    private fun setListVideoView() {
+    private fun setListAudioView() {
         if(mListAudio.isEmpty()) {
             visible(mMusicBinding.llMusicNotFound.root)
         } else {
@@ -153,37 +161,47 @@ class MusicFragment : Fragment() {
     }
 
     private fun setViewListFolderAudioDialog(mListFolderAudio : List<Folder>) {
-        val mDialogFolderBinding = DialogListFolderBinding.inflate(layoutInflater)
+        lifecycleScope.launch(Dispatchers.Main) {
+            val mDialogFolderBinding = DialogListFolderBinding.inflate(layoutInflater)
 
-        mListFolderAudioDialog = BottomSheetDialog(mContext!!, R.style.BottomSheetDialogTheme)
-        mListFolderAudioDialog!!.apply {
-            setContentView(mDialogFolderBinding.root)
-            behavior.state = BottomSheetBehavior.STATE_EXPANDED
-            behavior.maxHeight = resources.displayMetrics.heightPixels / 2
-            behavior.peekHeight = resources.displayMetrics.heightPixels / 2
-        }
+            mListFolderAudioDialog = BottomSheetDialog(mContext!!, R.style.BottomSheetDialogTheme)
+            mListFolderAudioDialog!!.setContentView(mDialogFolderBinding.root)
+            withContext(Dispatchers.IO) {
+                mFolderAdapter = FolderAdapter(mContext!!, mListFolderAudio, object : FolderAdapter.OnItemFolderListener {
+                    override fun onItemFolderClick(position: Int) {
+                        val mOldPos = mFolderAdapter!!.mPosCheckCurrentFolder
 
-        mFolderAdapter = FolderAdapter(mContext!!, mListFolderAudio, object : FolderAdapter.OnItemFolderListener {
-            override fun onItemFolderClick(position: Int) {
-                val mOldPos = mFolderAdapter!!.mPosCheckCurrentFolder
+                        mFolderAdapter!!.mPosCheckCurrentFolder = position
 
-                mFolderAdapter!!.mPosCheckCurrentFolder = position
+                        if(mOldPos != mFolderAdapter!!.mPosCheckCurrentFolder) {
+                            mFolderAdapter!!.notifyItemChanged(mOldPos)
+                            mFolderAdapter!!.notifyItemChanged(mFolderAdapter!!.mPosCheckCurrentFolder)
+                        }
 
-                if(mOldPos != mFolderAdapter!!.mPosCheckCurrentFolder) {
-                    mFolderAdapter!!.notifyItemChanged(mOldPos)
-                    mFolderAdapter!!.notifyItemChanged(mFolderAdapter!!.mPosCheckCurrentFolder)
+                        mListFolderAudioDialog!!.dismiss()
+                    }
+                })
+            }
+
+            mDialogFolderBinding.rcvListFolder.apply {
+                layoutManager = FlexboxLayoutManager(mContext).apply {
+                    flexDirection = FlexDirection.ROW
+                    justifyContent = JustifyContent.FLEX_START
                 }
-
-                mListFolderAudioDialog!!.dismiss()
+                adapter = mFolderAdapter
+                //cheat lỏ
+                layoutParams.height = resources.displayMetrics.heightPixels / 2
             }
-        })
-
-        mDialogFolderBinding.rcvListFolder.apply {
-            layoutManager = FlexboxLayoutManager(mContext).apply {
-                flexDirection = FlexDirection.ROW
-                justifyContent = JustifyContent.FLEX_START
-            }
-            adapter = mFolderAdapter
         }
+
+    }
+
+    override fun onDestroy() {
+        lifecycleScope.cancel()
+        super.onDestroy()
     }
 }
+
+//                behavior.state = BottomSheetBehavior.STATE_EXPANDED
+//                behavior.maxHeight = resources.displayMetrics.heightPixels / 2
+//                behavior.peekHeight = resources.displayMetrics.heightPixels / 2

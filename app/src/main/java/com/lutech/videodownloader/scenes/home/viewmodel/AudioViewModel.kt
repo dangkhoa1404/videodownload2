@@ -169,7 +169,7 @@ class AudioViewModel : ViewModel() {
                             )
                             listFolderAudio.add(folder)
 
-                            if (!parentFile.name.contains(Constants.APP_NAME)) {
+                            if (!parentFile.name.contains(Constants.APP_NAME_NEW)) {
                                 mCount += 1
                             }
                         }
@@ -183,7 +183,7 @@ class AudioViewModel : ViewModel() {
             if (Constants.pathApp.exists()) {
                 listFolderAudio.add(
                     0, Folder(
-                        Constants.APP_NAME,
+                        Constants.APP_NAME_NEW
                     )
                 )
             }
