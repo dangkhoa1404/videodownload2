@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btn_streaming_example">Spiele ein Video ab</string>
+    <string name="btn_downloading_example">Lade ein Video herunter</string>
+    <string name="btn_command_example">Beispiel für benutzerdefinierten Befehl</string>
+    <string name="btn_update">yt-dlp aktualisieren</string>
+    <string name="btn_start_stream">Fang an zu spielen</string>
+    <string name="btn_start_download">Download starten</string>
+    <string name="url_hint">Video-URL hier einfügen…</string>
+    <string name="btn_run_command">Befehl ausführen</string>
+    <string name="command_hint">Befehl hier eingeben</string>
+    <string name="url_error">geben Sie eine gültige URL ein</string>
+    <string name="command_error">geben Sie einen gültigen Befehl ein</string>
+    <string name="start">Mach das Ding</string>
+
+    <string name="download_start">Download wird gestartet</string>
+    <string name="download_complete">Herunterladen abgeschlossen</string>
+    <string name="download_failed">Download fehlgeschlagen</string>
+    <string name="command_start">Befehl starten</string>
+    <string name="command_complete">Befehl abgeschlossen</string>
+    <string name="command_failed">Befehl fehlgeschlagen</string>
+    <string name="use_config_file">Konfigurationsdatei verwenden?</string>
+    <string name="app_version">Version 0.0.1</string>
+    <string name="small_title">Youtube, Facebook, Instagram und mehr...</string>
+    <string name="copyright">Copyright ©2022. Alle Rechte vorbehaltenhehe</string>
+    <string name="clear_input">Eingabe löschen</string>
+    <string name="developer_name">Abdellatif Laghjaj</string>
+    <string name="developer_email">abdelatiflaghjaj@gmail.com</string>
+    <string name="privacy_policy_url">https://pages.flycricket.io/download-any-video/privacy.html</string>
+    <string name="more_apps_url">https://play.google.com/store/apps/dev?id=5417228408982511692</string>
+
+    <string name="all_videos">Alle Videos</string>
+    <string name="all_folders">Alle Ordner</string>
+    <string name="total_videos">Videos insgesamt:</string>
+    <string name="total_folders">Gesamtordner:</string>
+    <string name="open">Öffnen</string>
+    <string name="close">Schließen</string>
+    <string name="feedback">Feedback</string>
+    <string name="themes">Designs</string>
+    <string name="sort_order">Sortierreihenfolge</string>
+    <string name="about">Über</string>
+    <string name="exit">Beenden</string>
+    <string name="nav_text">Willkommen bei World of Entertainment!!</string>
+    <string name="video_name">Videoname</string>
+    <string name="folder_name">Ordnername</string>
+    <string name="duration">00:00</string>
+    <string name="image">Bild</string>
+    <string name="loading">Wird geladen..</string>
+    <string name="semi_colon">:</string>
+    <string name="lock">Sperrknopf</string>
+    <string name="back_btn">Zurück-Button</string>
+    <string name="menu">Menü</string>
+    <string name="prev_btn">Zurück-Button</string>
+    <string name="next_btn">Nächster Button</string>
+    <string name="repeat_btn">Wiederholen-Taste</string>
+    <string name="fullscreen_btn">Vollbild-Schaltfläche</string>
+    <string name="play_btn">Play-Button</string>
+    //für Menü
+    <string name="audio_track">Audiospur</string>
+    <string name="subtitles">Untertitel</string>
+    <string name="booster">Booster</string>
+    <string name="speed">Geschwindigkeit</string>
+    <string name="sleep_timer">Sleep-Timer</string>
+    <string name="pip_mode">PIP-Modus</string>
+    <string name="search">Suchen</string>
+
+    <!--strings for video more features-->
+    <string name="rename">Umbenennen </string>
+    <string name="delete">Löschen</string>
+    <string name="info">Info</string>
+    <string name="share">Teilen</string>
+    <string name="orientation">Orientierung</string>
+    <string name="O">0</string>
+    <string name="apply_to_all">Auf alle kommenden Videos anwenden</string>
+
+    <!-- Saiten für Online-Spielfunktionen-->
+    <string name="add_link">Link einfügen</string>
+    <string name="play">Video abspielen</string>
+    <string name="play_online">Online spielen</string>
+    <string name="youtube">Youtube</string>
+    <string name="txt_app_name">App-Name</string>
+
+    <string name="txt_toast_ads">Diese Aktion kann Werbung enthalten</string>
+    <string name="txt_loading_ads">Anzeigen werden geladen…</string>
+    <string name="txt_welcome_to_back">Willkommen zurück</string>
+
+    <string name="txt_tab">Tab</string>
+    <string name="txt_progress">Fortschritt</string>
+    <string name="txt_player">Spieler</string>
+    <string name="txt_video_downloader">Video-Downloader</string>
+    <string name="txt_1">1</string>
+    <string name="txt_search_or_type_url">URL suchen oder eingeben</string>
+    <string name="txt_facebook">Facebook</string>
+    <string name="txt_instagram">Instagram</string>
+    <string name="txt_youtube">Youtube</string>
+    <string name="txt_tiktok">Tiktok</string>
+    <string name="txt_no_records">Keine Datensätze</string>
+    <string name="txt_how_to_download">Herunterladen</string>
+    <string name="txt_all_videos">Alle Videos</string>
+    <string name="txt_settings">Einstellungen</string>
+    <string name="txt_download">Herunterladen</string>
+    <string name="txt_download_location">Download-Ort</string>
+    <string name="txt_video_download_location">/storage/emulated/0/Download/Video-Downloader</string>
+    <string name="txt_download_with_wi_fi_only">Nur mit WLAN herunterladen</string>
+    <string name="txt_wifi">WLAN</string>
+    <string name="txt_browser">Browser</string>
+    <string name="txt_on">Ein</string>
+    <string name="txt_off">Aus</string>
+    <string name="txt_block_ads">Anzeigen blockieren</string>
+    <string name="txt_save_your_passwords">Speichere deine Passwörter</string>
+    <string name="txt_recommended">Empfohlen</string>
+    <string name="txt_search_engine">Suchmaschine</string>
+    <string name="txt_google">Google</string>
+    <string name="txt_clear_cache">Cache leeren</string>
+    <string name="txt_clear_browser_history">Browserverlauf löschen</string>
+    <string name="txt_clear_cookies">Cookies löschen</string>
+    <string name="txt_sync_to_gallery">Mit Galerie synchronisieren</string>
+    <string name="txt_help">Hilfe</string>
+    <string name="txt_next">Weiter</string>
+    <string name="txt_got_it">Verstanden</string>
+    <string name="txt_feedback">Feedback</string>
+    <string name="txt_privacy_policy">Datenschutzerklärung</string>
+    <string name="txt_share_with_friends">Mit Freunden teilen</string>
+    <string name="txt_first_slide">Zur Website</string>
+    <string name="txt_second_slide">Spiel das Video ab</string>
+    <string name="txt_third_slide">Klicke auf die Download-Schaltfläche \n</string>
+    <string name="txt_fourth_slide">Bitte holen Sie die ERLAUBNIS vom Eigentümer ein, bevor Sie Videos oder Fotos melden. \n\n Jegliche unerlaubte Handlungen (erneutes Hochladen oder \n Herunterladen von Inhalten) und/oder Verletzungen von \n geistigen Eigentumsrechten liegen in der alleinigen \n Verantwortung des Benutzers.</string>
+    <string name="txt_number_1">1</string>
+    <string name="txt_number_2">2</string>
+    <string name="txt_number_3">3</string>
+    <string name="txt_number_4">Haftungsausschluss</string>
+    <string name="txt_heading_share"><![CDATA[Danke, dass Sie Video Download & \n Ace Player verwenden]]></string>
+    <string name="txt_des_share">Gefällt es dir?Teile es und informiere \n mehr Leute darüber!</string>
+    <string name="txt_share_now">jetzt teilen</string>
+    <string name="txt_later">später</string>
+    <string name="txt_type">Typ</string>
+    <string name="txt_heading_like">Warum hat dir die App nicht gefallen?</string>
+    <string name="txt_feedback_des">Bitte beschreibe dein Problem (mindestens 6 Zeichen)</string>
+    <string name="txt_submit">Senden</string>
+    <string name="txt_heading_rating">Danke für deine Unterstützung!</string>
+    <string name="txt_des_rating">Wir wären Ihnen sehr dankbar, wenn Sie uns \nbewerten könnten.</string>
+    <string name="txt_rate">Bewerten</string>
+    <string name="txt_put_link_here">Link hier einfügen</string>
+    <string name="txt_parse">Parsen</string>
+    <string name="txt_download2">Herunterladen</string>
+    <string name="txt_no_video_downloaded">Kein Video heruntergeladen</string>
+    <string name="txt_please_install_app_from_google_play_first">Bitte installieren Sie zuerst die App von Google Play</string>
+    <string name="txt_pinterest">Pinterest</string>
+    <string name="txt_from_website">Website</string>
+    <string name="txt_cannot_start_download_a_download_is_already_in_progress">Download kann nicht gestartet werden. ein Download ist bereits im Gange</string>
+    <string name="txt_grant_storage_permission_and_retry">Speicherberechtigung erteilen und erneut versuchen</string>
+    <string name="txt_download_successful">Download erfolgreich</string>
+    <string name="txt_fail_to_download">Download fehlgeschlagen</string>
+    <string name="txt_download_failed">Download fehlgeschlagen</string>
+    <string name="txt_00_00">00:00</string>
+    <string name="txt_waiting_for_wi_fi">Warten auf WLAN</string>
+
+    <string name="media_url_dash"><![CDATA[https://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?as=fmp4_audio_clear,fmp4_sd_hd_clear&sparams=ip,ipbits,expire,source ,id,as&ip=0.0.0.0&ipbits=0&expire=19000000000&signature=51AF5F39AB0CEC3E5497CD9C900EBFEAECCCB5C7.8506521BFC350652163895D4C26DEE124209AA9E&key=ik0]]></string>
+    <string name="media_url_mp4">https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4</string>
+    <string name="txt_share">Teilen</string>
+    <string name="txt_are_you_sure_you_want_to_delete">Bist du sicher, dass du löschen möchtest?</string>
+    <string name="txt_cancel">abbrechen</string>
+    <string name="txt_copy_url">URL kopieren</string>
+    <string name="txt_view_on_app">Auf App ansehen</string>
+    <string name="txt_repost">Repost</string>
+    <string name="txt_copied_to_clipbroad">Nach Clipbroad kopiert</string>
+    <string name="txt_scan_ad">Scannen (AD)</string>
+    <string name="txt_general_settings">Allgemeine Einstellungen</string>
+    <string name="txt_language_options">Sprachoptionen</string>
+    <string name="txt_english">Englisch</string>
+    <string name="txt_please_turn_off_option_download_with_wifi_only">Bitte schalte die Option "Nur mit WLAN herunterladen" aus</string>
+    <string name="txt_no_internet">Kein Internet</string>
+    <string name="txt_please_enter_the_link">Bitte geben Sie den Link ein</string>
+    <string name="txt_history_cleared">Verlauf gelöscht</string>
+    <string name="txt_cache_cleared">Cache gelöscht</string>
+    <string name="txt_ok">Okay</string>
+    <string name="txt_download_fail">Download fehlgeschlagen</string>
+    <string name="txt_too_many_ads">Zu viele Anzeigen</string>
+    <string name="txt_low_quality">Niedrige Qualität</string>
+    <string name="txt_other">Andere</string>
+    <string name="txt_language">Sprache</string>
+
+
+
+
+</resources>

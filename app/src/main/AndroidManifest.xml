@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lutech.videodownloader">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
+<!--    <queries>-->
+<!--        <package android:name="com.instagram.android" />-->
+<!--        <package android:name="com.facebook.katana" />-->
+<!--        <package android:name="com.whatsapp" />-->
+<!--        <package android:name="com.ss.android.ugc.trill" />-->
+<!--        <package android:name="com.pinterest" />-->
+<!--    </queries>-->
+
+
+    <application
+        android:name=".App"
+        android:extractNativeLibs="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.VideoDownloader"
+        tools:replace="android:theme">
+
+        <activity
+            android:name=".scenes.setting.SettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".scenes.welcomeback.WelcomeBackActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".scenes.policy.PolicyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".scenes.intro.activity.IntroActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".scenes.PlayVideoActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:exported="true" />
+
+        <activity
+            android:name=".scenes.PlayVideoActivity2"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:exported="true" />
+
+        <activity
+            android:name=".scenes.language.activity.LanguageActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".scenes.WatchVideoActivity"
+            android:configChanges="orientation|screenSize|screenLayout"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+
+        <activity
+            android:name=".scenes.setting.SettingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".scenes.home.activity.HomeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+            android:name=".scenes.splash.SplashActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".StreamingExampleActivity"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.MANAGE_DOCUMENTS"
+            tools:ignore="WrongManifestParent">
+            <intent-filter>
+                <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+<!--        <receiver-->
+<!--            android:name=".receiver.NetworkChangeReceiver"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter android:priority="100">-->
+<!--                <action-->
+<!--                    android:name="android.net.conn.CONNECTIVITY_CHANGE"-->
+<!--                    tools:ignore="BatteryLife" />-->
+<!--                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />-->
+<!--                <action android:name="android.net.wifi.STATE_CHANGE" />-->
+<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+    </application>
+
+</manifest>

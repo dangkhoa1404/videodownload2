@@ -1,0 +1,106 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <!--    bottom sheet-->
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">
+            @android:color/transparent
+        </item>
+    </style>
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">
+            @style/BottomSheetStyle
+        </item>
+    </style>
+
+    <!-- For Dynamic Theme -->
+    <style name="DynamicTheme1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/theme1ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/theme1ColorPrimaryDark</item>
+        <item name="colorAccent">@color/theme1ColorAccent</item>
+    </style>
+
+    <style name="DynamicTheme2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/theme2ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/theme2ColorPrimaryDark</item>
+        <item name="colorAccent">@color/theme2ColorAccent</item>
+    </style>
+
+    <style name="DynamicTheme3" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/theme3ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/theme3ColorPrimaryDark</item>
+        <item name="colorAccent">@color/theme3ColorAccent</item>
+    </style>
+
+    <style name="DynamicTheme4" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/theme4ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/theme4ColorPrimaryDark</item>
+        <item name="colorAccent">@color/theme4ColorAccent</item>
+    </style>
+
+    <style name="DynamicTheme5" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/theme5ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/theme5ColorPrimaryDark</item>
+        <item name="colorAccent">@color/theme5ColorAccent</item>
+    </style>
+    <style name="Color1SwitchStyle">
+        <item name="colorControlActivated">@color/icon_green</item>
+    </style>
+    
+    <style name="TextSettingGreenTitle">
+        <item name="android:textColor">@color/text_green</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
+    
+    <style name="TextSettingBlackTitle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/_14sdp</item>
+    </style>
+
+    <style name="TextSettingContent">
+        <item name="android:textSize">@dimen/_10sdp</item>
+
+    </style>
+
+    <!-- Animation for dialog box -->
+    <style name="DialogSlideAnim" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+    <style name="ClickableView">
+        <item name="colorControlHighlight">@android:color/darker_gray</item>
+        <item name="android:background">?selectableItemBackgroundBorderless</item>
+
+    </style>
+
+<!--    New ver 1-->
+    <style name="BottomNavigation.ActiveItemTextAppearanceActive" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+        <item name="android:fontFamily">@font/font_rubik_regular</item>
+    </style>
+
+    <style name="BottomNavigation.ActiveItemTextAppearanceInactive" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+        <item name="android:fontFamily">@font/font_rubik_light</item>
+    </style>
+
+    <style name="CustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:fontFamily">@font/font_rubik_regular</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

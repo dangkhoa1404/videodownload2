@@ -1,0 +1,269 @@
+<resources>
+    <string name="app_name" translatable="false">Video Downloader</string>
+
+    <!--language-->
+    <string name="english" translatable="false">English</string>
+    <string name="vietnamese" translatable="false">Tiếng Việt</string>
+    <string name="french" translatable="false">Français</string>
+    <string name="india" translatable="false">हिन्दी</string>
+    <string name="spain" translatable="false">Español</string>
+    <string name="portugal" translatable="false">Português</string>
+    <string name="germany" translatable="false">Deutsch</string>
+    <string name="italy" translatable="false">Italiano</string>
+    <string name="japan" translatable="false">日本</string>
+
+    <string name="uae" translatable="false">عربي</string>
+    <string name="thailand" translatable="false">ไทย</string>
+    <string name="israel" translatable="false">עִברִית</string>
+    <string name="korea" translatable="false">한국인</string>
+    <string name="nederland" translatable="false">Nederlands</string>
+
+    <string name="sounth_african" translatable="false">Afrikaans</string>
+    <string name="georgian" translatable="false">Georgian</string>
+    <string name="polish" translatable="false">Polish</string>
+    <string name="german" translatable="false">Deutsche</string>
+    <string name="turkish" translatable="false">Turkish</string>
+    <string name="indonesia" translatable="false">bahasa Indonesia</string>
+    <string name="phillipin" translatable="false">Filipino</string>
+    <string name="dutch" translatable="false">Dutch</string>
+    <string name="romanian" translatable="false">Romanian</string>
+    <string name="greek" translatable="false">Greek</string>
+    <string name="romansh" translatable="false">Romansh</string>
+
+
+    <string name="btn_streaming_example">play a video</string>
+    <string name="btn_downloading_example">download a video</string>
+    <string name="btn_command_example">Custom Command Example</string>
+    <string name="btn_update">Update yt-dlp</string>
+    <string name="btn_start_stream">Start Playing</string>
+    <string name="btn_start_download">Start Download</string>
+    <string name="url_hint">Paste Video URL Here…</string>
+    <string name="btn_run_command">Run Command</string>
+    <string name="command_hint">enter command here</string>
+    <string name="url_error">enter a valid url</string>
+    <string name="command_error">enter a valid command</string>
+    <string name="start">Do the thing</string>
+    <string name="example_command" translatable="false">Example command: --extract-audio --audio-format mp3 -o /sdcard/Download/youtubedl-android/%(title)s.%(ext)s https://www.youtube.com/watch?v=dQw4w9WgXcQ</string>
+    <string name="download_start">Starting Download</string>
+    <string name="download_complete">Download Complete</string>
+    <string name="download_failed">Download Failed</string>
+    <string name="command_start">Starting Command</string>
+    <string name="command_complete">Command Complete</string>
+    <string name="command_failed">Command Failed</string>
+    <string name="use_config_file">Use Config File?</string>
+    <string name="app_version">version 0.0.1</string>
+    <string name="small_title">Youtube, Facebook, Instagram and more…</string>
+    <string name="copyright">copyright ©2022. All rights reservedhehe</string>
+    <string name="clear_input">clear input</string>
+    <string name="about_message" translatable="false">All in one video downloader is a video utility app,That you can use to download videos from social media apps.\nFor example you can download youtube, facebook, instagram and pinterest videos.\nOur app user Youtube-dl library to download videos.</string>
+    <string name="developer_name">Abdellatif Laghjaj</string>
+    <string name="developer_email">abdelatiflaghjaj@gmail.com</string>
+    <string name="privacy_policy_url">https://pages.flycricket.io/download-any-video/privacy.html</string>
+    <string name="more_apps_url">https://play.google.com/store/apps/dev?id=5417228408982511692</string>
+
+    <string name="all_videos">All Videos</string>
+    <string name="all_folders">All Folders</string>
+    <string name="total_videos">Total Videos:</string>
+    <string name="total_folders">Total Folders:</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="feedback">Feedback</string>
+    <string name="themes">Themes</string>
+    <string name="sort_order">Sort Order</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+    <string name="nav_text">Welcome to World of Entertainment!!</string>
+    <string name="video_name">Video Name</string>
+    <string name="folder_name">Folder Name</string>
+    <string name="duration">00:00</string>
+    <string name="image">Image</string>
+    <string name="loading">Loading..</string>
+    <string name="semi_colon">:</string>
+    <string name="lock">Lock Button</string>
+    <string name="back_btn">Back Button</string>
+    <string name="menu">Menu</string>
+    <string name="prev_btn">Previous Button</string>
+    <string name="next_btn">Next Button</string>
+    <string name="repeat_btn">Repeat Button</string>
+    <string name="fullscreen_btn">Fullscreen Button</string>
+    <string name="play_btn">Play Button</string>
+    //for menu
+    <string name="audio_track">Audio Track</string>
+    <string name="subtitles">Subtitles</string>
+    <string name="booster">Booster</string>
+    <string name="speed">Speed</string>
+    <string name="sleep_timer">Sleep Timer</string>
+    <string name="pip_mode">PIP Mode</string>
+    <string name="search">Search</string>
+
+    <!--strings for video more features-->
+    <string name="rename">Rename </string>
+    <string name="delete">Delete</string>
+    <string name="info">Info</string>
+    <string name="share">Share</string>
+    <string name="orientation">Orientation</string>
+    <string name="O">0</string>
+    <string name="apply_to_all">Apply To All Upcoming Videos</string>
+
+    <!-- strings for online playing features-->
+    <string name="add_link">Paste Link</string>
+    <string name="play">Play Video</string>
+    <string name="play_online">Play Online</string>
+    <string name="youtube">Youtube</string>
+    <string name="txt_app_name">App Name</string>
+
+    <string name="txt_toast_ads">This action can contain ads</string>
+    <string name="txt_loading_ads">Loading Ads…</string>
+    <string name="txt_welcome_to_back">Welcome Back</string>
+
+    <string name="txt_tab">Tab</string>
+    <string name="txt_progress">Progress</string>
+    <string name="txt_player">Player</string>
+    <string name="txt_video_downloader">Video Downloader</string>
+    <string name="txt_1">1</string>
+    <string name="txt_search_or_type_url">Search or Type URL</string>
+    <string name="txt_facebook">Facebook</string>
+    <string name="txt_instagram">Instagram</string>
+    <string name="txt_youtube">Youtube</string>
+    <string name="txt_tiktok">Tiktok</string>
+    <string name="txt_no_records">No records</string>
+    <string name="txt_how_to_download">How to Download</string>
+    <string name="txt_all_videos">All Videos</string>
+    <string name="txt_settings">Settings</string>
+    <string name="txt_download">Download</string>
+    <string name="txt_download_location">Download Location</string>
+    <string name="txt_video_download_location">/storage/emulated/0/Download/Video Downloader</string>
+    <string name="txt_download_with_wi_fi_only">Download with Wi-Fi Only</string>
+    <string name="txt_wifi">Wifi</string>
+    <string name="txt_browser">Browser</string>
+    <string name="txt_on">On</string>
+    <string name="txt_off">Off</string>
+    <string name="txt_block_ads">Block ads</string>
+    <string name="txt_save_your_passwords">Save your passwords</string>
+    <string name="txt_recommended">Recommended</string>
+    <string name="txt_search_engine">Search Engine</string>
+    <string name="txt_google">Google</string>
+    <string name="txt_clear_cache">Clear Cache</string>
+    <string name="txt_clear_browser_history">Clear Browser History</string>
+    <string name="txt_clear_cookies">Clear cookies</string>
+    <string name="txt_sync_to_gallery">Sync to Gallery</string>
+    <string name="txt_help">Help</string>
+    <string name="txt_next">Next</string>
+    <string name="txt_got_it">Got it</string>
+    <string name="txt_feedback">Feedback</string>
+    <string name="txt_privacy_policy">Privacy Policy</string>
+    <string name="txt_share_with_friends">Share with friends</string>
+    <string name="txt_first_slide">Go to website</string>
+    <string name="txt_second_slide">Play the video</string>
+    <string name="txt_third_slide">Click the download \n button</string>
+    <string name="txt_fourth_slide">Please get the PERMISSION from the owner before \n you report videos or photos; \n\n Any unauthorized actions(re-uploading or \n downloading of contents) and/or violations of \n intelletual property rights is the sole responsibility \n of the user.</string>
+    <string name="txt_number_1">1</string>
+    <string name="txt_number_2">2</string>
+    <string name="txt_number_3">3</string>
+    <string name="txt_number_4">Disclaimer</string>
+    <string name="txt_heading_share"><![CDATA[Thanks for using Video Download & \n Ace Player]]></string>
+    <string name="txt_des_share">Do you like it?Share it and let more people know \n about it!</string>
+    <string name="txt_share_now">share now</string>
+    <string name="txt_later">later</string>
+    <string name="txt_type">Type</string>
+    <string name="txt_heading_like">Why did you dislike the app?</string>
+    <string name="txt_feedback_des">Please describe your problem (at least 6 characters)</string>
+    <string name="txt_submit">Submit</string>
+    <string name="txt_heading_rating">Thank you for your support!</string>
+    <string name="txt_des_rating">We would be very grateful if you can rate \n us.</string>
+    <string name="txt_rate">Rate</string>
+    <string name="txt_put_link_here">Put link here</string>
+    <string name="txt_parse">Parse</string>
+    <string name="txt_download2">Download</string>
+    <string name="txt_no_video_downloaded">No video downloaded</string>
+    <string name="txt_please_install_app_from_google_play_first">Please install app from Google play first</string>
+    <string name="txt_pinterest">Pinterest</string>
+    <string name="txt_from_website">Website</string>
+    <string name="txt_cannot_start_download_a_download_is_already_in_progress">Cannot start download. a download is already in progress</string>
+    <string name="txt_grant_storage_permission_and_retry">Grant storage permission and retry</string>
+    <string name="txt_download_successful">Download successful</string>
+    <string name="txt_fail_to_download">Failed to download</string>
+    <string name="txt_download_failed">Download failed</string>
+    <string name="txt_00_00">00:00</string>
+    <string name="txt_waiting_for_wi_fi">Waiting for Wi-Fi</string>
+
+    <string name="media_url_dash"><![CDATA[https://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?as=fmp4_audio_clear,fmp4_sd_hd_clear&sparams=ip,ipbits,expire,source,id,as&ip=0.0.0.0&ipbits=0&expire=19000000000&signature=51AF5F39AB0CEC3E5497CD9C900EBFEAECCCB5C7.8506521BFC350652163895D4C26DEE124209AA9E&key=ik0]]></string>
+    <string name="media_url_mp4">https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4</string>
+    <string name="txt_share">Share</string>
+    <string name="txt_are_you_sure_you_want_to_delete">Are you sure you want to delete?</string>
+    <string name="txt_cancel">cancel</string>
+    <string name="txt_copy_url">Copy URL</string>
+    <string name="txt_view_on_app">View on App</string>
+    <string name="txt_repost">Repost</string>
+    <string name="txt_copied_to_clipbroad">Copied to clipbroad</string>
+    <string name="txt_scan_ad">Scan (AD)</string>
+    <string name="txt_general_settings">General Settings</string>
+    <string name="txt_language_options">Language options</string>
+    <string name="txt_english">English</string>
+    <string name="txt_please_turn_off_option_download_with_wifi_only">Please turn off option Download with Wi-Fi Only</string>
+    <string name="txt_no_internet">No Internet</string>
+    <string name="txt_please_enter_the_link">Please enter the link</string>
+    <string name="txt_history_cleared">History Cleared</string>
+    <string name="txt_cache_cleared">Cache Cleared</string>
+    <string name="txt_ok">Ok</string>
+    <string name="txt_download_fail">Download failed</string>
+    <string name="txt_too_many_ads">Too many ads</string>
+    <string name="txt_low_quality">Low quality</string>
+    <string name="txt_other">Others</string>
+    <string name="txt_language">Language</string>
+
+
+    <!--    New ver 1-->
+    <string name="txt_copy_link">Copy link</string>
+    <string name="txt_bottom_nav_home">Home</string>
+    <string name="txt_bottom_nav_hot_video">Hot Video</string>
+    <string name="txt_bottom_nav_downloads">Downloads</string>
+    <string name="txt_bottom_nav_player">Player</string>
+    <string name="txt_paste_link">Paste Link</string>
+    <string name="txt_paste_link_to_donwload">Paste link to download</string>
+    <string name="txt_empty_clipboard">Empty Clipboard</string>
+    <string name="txt_enter_valid_url">Enter valid url</string>
+    <string name="txt_already_has_link">Already has link</string>
+    <string name="txt_websites">Websites</string>
+    <string name="txt_see_more">See More</string>
+    <string name="txt_search_your_desired_video">Search your desired video</string>
+
+    <string name="txt_twitter">Twitter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="txt_completed">Completed</string>
+    <string name="txt_in_progress">In Progress</string>
+    <string name="txt_learn_how_to_download_video">Learn how to download video</string>
+
+    <string name="txt_fetching_video">Fetching video</string>
+    <string name="txt_videos">Videos</string>
+    <string name="txt_music">Music</string>
+    <string name="txt_welcome_back">Welcome Back</string>
+
+    <string name="txt_intro_title_1">Find your video</string>
+    <string name="txt_intro_des_1">Search for video URL from the search bar provided or paste the URL to start downloading instantly</string>
+    <string name="txt_intro_title_2">Play your video</string>
+    <string name="txt_intro_des_2">Tab on play button to activate \"Download\" button</string>
+    <string name="txt_intro_title_3">Download your video</string>
+    <string name="txt_intro_des_3">Tab on the \"Download\" button to start downloading your favourite video</string>
+    <string name="txt_intro_title_4">Find your image</string>
+    <string name="txt_intro_des_4">\"Tap and hold in the image you want to download. A pop will appear\"</string>
+    <string name="txt_intro_title_5">Tap download</string>
+    <string name="txt_intro_des_5">\"When the pop up appears. Click on the \"Download Image\" option\"</string>
+    <string name="txt_intro_title_6">Select &amp; Download</string>
+    <string name="txt_intro_des_6">\"Select the format and quality and click on download\"</string>
+    <string name="txt_intro_title_7">Restricted Content</string>
+    <string name="txt_intro_des_7">Downloading videos from Youtube is not supporte by \"All Video Downloader\"</string>
+    <string name="txt_skip">Skip</string>
+    <string name="txt_proceed">Proceed</string>
+    <string name="txt_folders">Folders</string>
+    <string name="txt_of_size">of Size</string>
+    <string name="txt_musics">Musics</string>
+    <string name="txt_no_videos_found">No videos found</string>
+    <string name="txt_no_music_found">No music found</string>
+
+    <string name="txt_no_file" translatable="false">0</string>
+    <string name="txt_filter_by_folder">Filter by Folder</string>
+
+</resources>

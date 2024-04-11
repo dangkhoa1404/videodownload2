@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dialog"
+    android:id="@+id/bottomshareSheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_smile"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:textSize="@dimen/_16sdp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+
+        android:text="@string/txt_heading_share"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_13sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:text="@string/txt_des_share"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/btn_share_now"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/bg_dark_green_rounded"
+            android:gravity="center"
+            android:clickable="true"
+            android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_share_now"
+                    android:textSize="@dimen/_15sdp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_later"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/bg_white_rounded"
+            android:gravity="center"
+            android:clickable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_later"
+                android:textSize="@dimen/_10sdp"
+                android:textAllCaps="true"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

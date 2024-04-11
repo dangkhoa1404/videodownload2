@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tvVideoDownloader"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/txt_video_downloader"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:id="@+id/btnTag"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:visibility="gone"
+        android:background="?android:selectableItemBackground">
+
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_round_border" />
+
+        <TextView
+            android:id="@+id/tvCurrentTagNumber"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/txt_1"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/btnSetting"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_3sdp"
+        android:background="?android:selectableItemBackground"
+        android:src="@drawable/icon_setting"
+        app:tint="@color/black" />
+
+    <ImageView
+        android:id="@+id/btnMore"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:background="?android:selectableItemBackground"
+        android:padding="@dimen/_3sdp"
+        android:src="@drawable/ic_dots" />
+</LinearLayout>

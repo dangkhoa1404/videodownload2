@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_15sdp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/_10sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingVertical="@dimen/_30sdp">
+
+        <TextView
+            android:id="@+id/tvMoveToRecycleBinDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/txt_are_you_sure_you_want_to_delete"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/bg_button_cancel_dialog"
+            android:paddingHorizontal="@dimen/_30sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:text="@string/txt_cancel"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_green"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnDelete1"
+            app:layout_constraintEnd_toStartOf="@+id/btnDelete1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnDelete1" />
+
+        <TextView
+            android:id="@+id/btnDelete1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/bg_delete_green"
+            android:paddingHorizontal="@dimen/_30sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:text="@string/delete"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnCancel"
+            app:layout_constraintTop_toBottomOf="@+id/tvMoveToRecycleBinDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

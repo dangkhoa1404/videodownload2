@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#00FFFFFF"
+    android:id="@+id/bottomlikeSheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:translationZ="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:src="@drawable/ic_smile"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_dialog">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_heading_rating"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:textSize="@dimen/_20sdp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:text="@string/txt_des_rating"/>
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:numStars="5"
+            android:isIndicator="false"
+            android:stepSize="1"
+            android:progressTint="@color/yellow"
+            android:progressBackgroundTint="#D1D1D1"
+            android:rating="3"/>
+
+        <LinearLayout
+            android:id="@+id/linear_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_rate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:gravity="center"
+                android:background="@drawable/bg_dark_green_rounded"
+                android:text="@string/txt_rate"
+                android:textColor="@color/white"/>
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/btn_got_it"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="@drawable/bg_dark_green_rounded"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Got it"-->
+<!--                    android:textSize="20dp"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textStyle="bold"/>-->
+
+
+<!--            </LinearLayout>-->
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

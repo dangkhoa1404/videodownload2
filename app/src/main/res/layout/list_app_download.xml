@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/bg_white_rounded"
+    android:rowCount="2">
+
+    <LinearLayout
+        android:id="@+id/app_facebook"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:background="?android:selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/ic_facebook" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_facebook"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/app_instagram"
+        android:layout_width="@dimen/_70sdp"
+        android:visibility="gone"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="?android:selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintEnd_toStartOf="@+id/app_youtube"
+        app:layout_constraintStart_toEndOf="@+id/app_facebook"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/ic_instagram" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_instagram"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/app_youtube"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_column="1"
+        android:layout_row="0"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="?android:selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintEnd_toStartOf="@+id/app_tiktok"
+        app:layout_constraintStart_toEndOf="@+id/app_facebook"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/ic_youtube" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_youtube"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/app_tiktok"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_row="0"
+        android:layout_column="2"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="?android:selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/ic_tiktok" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_tiktok"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/app_pinterest"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="?android:selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintEnd_toStartOf="@+id/app_website"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_youtube">
+
+        <ImageView
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/ic_pinterest" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_pinterest"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/app_website"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="?android:selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_youtube">
+
+        <ImageView
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/ic_website" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_from_website"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+</GridLayout>

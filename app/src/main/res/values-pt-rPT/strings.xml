@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="btn_streaming_example">reproduzir um vídeo</string>
+    <string name="btn_downloading_example">baixar um vídeo</string>
+    <string name="btn_command_example">Exemplo de comando personalizado</string>
+    <string name="btn_update">Atualizar yt-dlp</string>
+    <string name="btn_start_stream">Começar a jogar</string>
+    <string name="btn_start_download">Iniciar download</string>
+    <string name="url_hint">Cole o URL do vídeo aqui…</string>
+    <string name="btn_run_command">Executar comando</string>
+    <string name="command_hint">digite o comando aqui</string>
+    <string name="url_error">insira um url válido</string>
+    <string name="command_error">digite um comando válido</string>
+    <string name="start">Faça a coisa</string>
+
+    <string name="download_start">Iniciando download</string>
+    <string name="download_complete">Download completo</string>
+    <string name="download_failed">Falha no download</string>
+    <string name="command_start">Comando inicial</string>
+    <string name="command_complete">Comando concluído</string>
+    <string name="command_failed">Falha no comando</string>
+    <string name="use_config_file">Usar arquivo de configuração?</string>
+    <string name="app_version">versão 0.0.1</string>
+    <string name="small_title">Youtube, Facebook, Instagram e muito mais…</string>
+    <string name="copyright">direitos autorais ©2022. Todos os direitos reservadoshehe</string>
+    <string name="clear_input">limpar entrada</string>
+    <string name="developer_name">Abdellatif Laghjaj</string>
+    <string name="developer_email">abdelatiflaghjaj@gmail.com</string>
+    <string name="privacy_policy_url">https://pages.flycricket.io/download-any-video/privacy.html</string>
+    <string name="more_apps_url">https://play.google.com/store/apps/dev?id=5417228408982511692</string>
+
+    <string name="all_videos">Todos os vídeos</string>
+    <string name="all_folders">Todas as pastas</string>
+    <string name="total_videos">Total de vídeos:</string>
+    <string name="total_folders">Pastas totais:</string>
+    <string name="open">Abrir</string>
+    <string name="close">Fechar</string>
+    <string name="feedback">Feedback</string>
+    <string name="themes">Temas</string>
+    <string name="sort_order">Ordem de classificação</string>
+    <string name="about">Sobre</string>
+    <string name="exit">Sair</string>
+    <string name="nav_text">Bem-vindo ao mundo do entretenimento!!</string>
+    <string name="video_name">Nome do vídeo</string>
+    <string name="folder_name">Nome da pasta</string>
+    <string name="duration">00:00</string>
+    <string name="image">Imagem</string>
+    <string name="loading">Carregando..</string>
+    <string name="semi_colon">:</string>
+    <string name="lock">Botão de bloqueio</string>
+    <string name="back_btn">Botão Voltar</string>
+    <string name="menu">Menu</string>
+    <string name="prev_btn">Botão anterior</string>
+    <string name="next_btn">Botão Próximo</string>
+    <string name="repeat_btn">Botão Repetir</string>
+    <string name="fullscreen_btn">Botão Tela Cheia</string>
+    <string name="play_btn">Botão Reproduzir</string>
+    //para o menu
+    <string name="audio_track">Faixa de áudio</string>
+    <string name="subtitles">Legendas</string>
+    <string name="booster">Booster</string>
+    <string name="speed">Velocidade</string>
+    <string name="sleep_timer">Temporizador</string>
+    <string name="pip_mode">Modo PIP</string>
+    <string name="search">Pesquisar</string>
+
+    <!--strings para vídeo mais recursos-->
+    <string name="rename">Renomear </string>
+    <string name="delete">Excluir</string>
+    <string name="info">Informações</string>
+    <string name="share">Compartilhar</string>
+    <string name="orientation">Orientação</string>
+    <string name="O">0</string>
+    <string name="apply_to_all">Aplicar a todos os próximos vídeos</string>
+
+    <!-- strings para recursos de reprodução online-->
+    <string name="add_link">Colar link</string>
+    <string name="play">Reproduzir vídeo</string>
+    <string name="play_online">Jogue Online</string>
+    <string name="youtube">Youtube</string>
+    <string name="txt_app_name">Nome do aplicativo</string>
+
+    <string name="txt_toast_ads">Esta ação pode conter anúncios</string>
+    <string name="txt_loading_ads">Carregando anúncios…</string>
+    <string name="txt_welcome_to_back">Bem-vindo de volta</string>
+
+    <string name="txt_tab">Guia</string>
+    <string name="txt_progress">Progresso</string>
+    <string name="txt_player">Jogador</string>
+    <string name="txt_video_downloader">Baixar vídeos</string>
+    <string name="txt_1">1</string>
+    <string name="txt_search_or_type_url">Pesquisar ou digitar URL</string>
+    <string name="txt_facebook">Facebook</string>
+    <string name="txt_instagram">Instagram</string>
+    <string name="txt_youtube">Youtube</string>
+    <string name="txt_tiktok">Tiktok</string>
+    <string name="txt_no_records">Nenhum registro</string>
+    <string name="txt_how_to_download">Como baixar</string>
+    <string name="txt_all_videos">Todos os vídeos</string>
+    <string name="txt_settings">Configurações</string>
+    <string name="txt_download">Baixar</string>
+    <string name="txt_download_location">Localização do download</string>
+    <string name="txt_video_download_location">/storage/emulated/0/Download/Video Downloader</string>
+    <string name="txt_download_with_wi_fi_only">Baixe apenas com Wi-Fi</string>
+    <string name="txt_wifi">Wi-Fi</string>
+    <string name="txt_browser">Navegador</string>
+    <string name="txt_on">Ativado</string>
+    <string name="txt_off">Desativado</string>
+    <string name="txt_block_ads">Bloquear anúncios</string>
+    <string name="txt_save_your_passwords">Salve suas senhas</string>
+    <string name="txt_recommended">Recomendado</string>
+    <string name="txt_search_engine">Mecanismo de pesquisa</string>
+    <string name="txt_google">Google</string>
+    <string name="txt_clear_cache">Limpar Cache</string>
+    <string name="txt_clear_browser_history">Limpar histórico do navegador</string>
+    <string name="txt_clear_cookies">Limpar cookies</string>
+    <string name="txt_sync_to_gallery">Sincronizar com a Galeria</string>
+    <string name="txt_help">Ajuda</string>
+    <string name="txt_next">Próximo</string>
+    <string name="txt_got_it">Entendi</string>
+    <string name="txt_feedback">Comentários</string>
+    <string name="txt_privacy_policy">Política de Privacidade</string>
+    <string name="txt_share_with_friends">Compartilhe com amigos</string>
+    <string name="txt_first_slide">Ir para o site</string>
+    <string name="txt_second_slide">Reproduzir o vídeo</string>
+    <string name="txt_third_slide">Clique no botão de download \n</string>
+    <string name="txt_fourth_slide">Por favor, obtenha a PERMISSÃO do proprietário antes de \n denunciar vídeos ou fotos; \n\n Quaisquer ações não autorizadas (re-upload ou \n download de conteúdo) e/ou violações de \n direitos de propriedade intelectual são de responsabilidade exclusiva \n do usuário.</string>
+    <string name="txt_number_1">1</string>
+    <string name="txt_number_2">2</string>
+    <string name="txt_number_3">3</string>
+    <string name="txt_number_4">Isenção de responsabilidade</string>
+    <string name="txt_heading_share"><![CDATA[Obrigado por usar o Video Download & \n Ace Player]]></string>
+    <string name="txt_des_share">Gostou? Compartilhe e deixe mais pessoas saberem \n sobre isso!</string>
+    <string name="txt_share_now">compartilhe agora</string>
+    <string name="txt_later">mais tarde</string>
+    <string name="txt_type">Tipo</string>
+    <string name="txt_heading_like">Por que você não gostou do aplicativo?</string>
+    <string name="txt_feedback_des">Descreva seu problema (pelo menos 6 caracteres)</string>
+    <string name="txt_submit">Enviar</string>
+    <string name="txt_heading_rating">Obrigado por seu apoio!</string>
+    <string name="txt_des_rating">Ficaríamos muito gratos se você pudesse nos avaliar.</string>
+    <string name="txt_rate">Taxa</string>
+    <string name="txt_put_link_here">Coloque o link aqui</string>
+    <string name="txt_parse">Analisar</string>
+    <string name="txt_download2">Baixar</string>
+    <string name="txt_no_video_downloaded">Nenhum vídeo baixado</string>
+    <string name="txt_please_install_app_from_google_play_first">Instale o aplicativo do Google Play primeiro</string>
+    <string name="txt_pinterest">Pinterest</string>
+    <string name="txt_from_website">Site</string>
+    <string name="txt_cannot_start_download_a_download_is_already_in_progress">Não é possível iniciar o download. um download já está em andamento</string>
+    <string name="txt_grant_storage_permission_and_retry">Conceder permissão de armazenamento e tentar novamente</string>
+    <string name="txt_download_successful">Download bem-sucedido</string>
+    <string name="txt_fail_to_download">Falha ao baixar</string>
+    <string name="txt_download_failed">Falha no download</string>
+    <string name="txt_00_00">00:00</string>
+    <string name="txt_waiting_for_wi_fi">Aguardando Wi-Fi</string>
+
+    <string name="media_url_dash"><![CDATA[https://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?as=fmp4_audio_clear,fmp4_sd_hd_clear&sparams=ip,ipbits,expire,source ,id,as&ip=0.0.0.0&ipbits=0&expire=19000000000&signature=51AF5F39AB0CEC3E5497CD9C900EBFEAECCCB5C7.8506521BFC350652163895D4C26DEE124209AA9E&key=ik0]]></string>
+    <string name="media_url_mp4">https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4</string>
+    <string name="txt_share">Compartilhar</string>
+    <string name="txt_are_you_sure_you_want_to_delete">Tem certeza de que deseja excluir?</string>
+    <string name="txt_cancel">cancelar</string>
+    <string name="txt_copy_url">Copiar URL</string>
+    <string name="txt_view_on_app">Visualizar no aplicativo</string>
+    <string name="txt_repost">Repostar</string>
+    <string name="txt_copied_to_clipbroad">Copiado para clipbroad</string>
+    <string name="txt_scan_ad">Verificar (AD)</string>
+    <string name="txt_general_settings">Configurações gerais</string>
+    <string name="txt_language_options">Opções de idioma</string>
+    <string name="txt_english">Inglês</string>
+    <string name="txt_please_turn_off_option_download_with_wifi_only">Desative a opção Baixar apenas com Wi-Fi</string>
+    <string name="txt_no_internet">Sem Internet</string>
+    <string name="txt_please_enter_the_link">Por favor, insira o link</string>
+    <string name="txt_history_cleared">Histórico limpo</string>
+    <string name="txt_cache_cleared">Cache limpo</string>
+    <string name="txt_ok">Ok</string>
+    <string name="txt_download_fail">Falha no download</string>
+    <string name="txt_too_many_ads">Muitos anúncios</string>
+    <string name="txt_low_quality">Baixa qualidade</string>
+    <string name="txt_other">Outros</string>
+    <string name="txt_language">Idioma</string>
+
+
+
+
+</resources>

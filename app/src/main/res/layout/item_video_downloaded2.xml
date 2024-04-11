@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="?android:selectableItemBackground"
+    android:padding="@dimen/_10sdp"
+    android:layout_height="@dimen/_150sdp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivVideoImage"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_video"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/llTime"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_transparent_dark_rounded"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivVideoPauseIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_slow_motion_video_24" />
+
+                <TextView
+                    android:id="@+id/tvTimeLengthOfVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_00_00"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_transparent_dark_rounded"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/btnShare"
+                    android:layout_width="0dp"
+                    android:background="?android:selectableItemBackground"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_share_24" />
+
+                <ImageView
+                    android:id="@+id/btnCopyUrl"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_link"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/btnViewOnApp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:layout_weight="1"
+                    android:src="@drawable/icon_view_on_app" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="btn_streaming_example">phát video</string>
+    <string name="btn_downloading_example">tải xuống video</string>
+    <string name="btn_command_example">Ví dụ về lệnh tùy chỉnh</string>
+    <string name="btn_update">Cập nhật yt-dlp</string>
+    <string name="btn_start_stream">Bắt đầu chơi</string>
+    <string name="btn_start_download">Bắt đầu tải xuống</string>
+    <string name="url_hint">Dán URL Video vào đây…</string>
+    <string name="btn_run_command">Chạy lệnh</string>
+    <string name="command_hint">nhập lệnh vào đây</string>
+    <string name="url_error">nhập url hợp lệ</string>
+    <string name="command_error">nhập lệnh hợp lệ</string>
+    <string name="start">Làm một việc</string>
+
+    <string name="download_start">Bắt đầu tải xuống</string>
+    <string name="download_complete">Tải xuống hoàn tất</string>
+    <string name="download_failed">Tải xuống không thành công</string>
+    <string name="command_start">Khởi động lệnh</string>
+    <string name="command_complete">Hoàn tất lệnh</string>
+    <string name="command_failed">Lệnh thất bại</string>
+    <string name="use_config_file">Sử dụng tập tin cấu hình?</string>
+    <string name="app_version">phiên bản 0.0.1</string>
+    <string name="small_title">YouTube, Facebook, Instagram và hơn thế nữa…</string>
+    <string name="copyright">bản quyền ©2022. Bảo lưu mọi quyềnhehe</string>
+    <string name="clear_input">xóa đầu vào</string>
+    <string name="developer_name">Abdellatif Laghjaj</string>
+    <string name="developer_email">abdelatiflaghjaj@gmail.com</string>
+    <string name="privacy_policy_url">https://pages.flycricket.io/download-any-video/privacy.html</string>
+    <string name="more_apps_url">https://play.google.com/store/apps/dev?id=5417228408982511692</string>
+
+    <string name="all_videos">Tất cả Video</string>
+    <string name="all_folders">Tất cả thư mục</string>
+    <string name="total_videos">Tổng số Video:</string>
+    <string name="total_folders">Tổng số thư mục:</string>
+    <string name="open">Mở</string>
+    <string name="close">Đóng</string>
+    <string name="feedback">Phản hồi</string>
+    <string name="themes">Chủ đề</string>
+    <string name="sort_order">Thứ tự sắp xếp</string>
+    <string name="about">Giới thiệu</string>
+    <string name="exit">Thoát</string>
+    <string name="nav_text">Chào mừng đến với Thế giới Giải trí!!</string>
+    <string name="video_name">Tên Video</string>
+    <string name="folder_name">Tên thư mục</string>
+    <string name="duration">00:00</string>
+    <string name="image">Hình ảnh</string>
+    <string name="loading">Đang tải..</string>
+    <string name="semi_colon">:</string>
+    <string name="lock">Nút Khóa</string>
+    <string name="back_btn">Nút Quay lại</string>
+    <string name="menu">Thực đơn</string>
+    <string name="prev_btn">Nút Trước</string>
+    <string name="next_btn">Nút Tiếp theo</string>
+    <string name="repeat_btn">Nút Lặp lại</string>
+    <string name="fullscreen_btn">Nút toàn màn hình</string>
+    <string name="play_btn">Nút phát</string>
+    // cho thực đơn
+    <string name="audio_track">Bản âm thanh</string>
+    <string name="subtitles">Phụ đề</string>
+    <string name="booster">Tăng cường</string>
+    <string name="speed">Tốc độ</string>
+    <string name="sleep_timer">Hẹn giờ ngủ</string>
+    <string name="pip_mode">Chế độ PIP</string>
+    <string name="search">Tìm kiếm</string>
+
+    <!--chuỗi cho video có nhiều tính năng hơn-->
+    <string name="rename">Đổi tên </string>
+    <string name="delete">Xóa</string>
+    <string name="info">Thông tin</string>
+    <string name="share">Chia sẻ</string>
+    <string name="orientation">Hướng</string>
+    <string name="O">0</string>
+    <string name="apply_to_all">Áp dụng cho tất cả video sắp ra mắt</string>
+
+    <!-- chuỗi cho các tính năng chơi trực tuyến-->
+    <string name="add_link">Dán Liên kết</string>
+    <string name="play">Phát Video</string>
+    <string name="play_online">Chơi trực tuyến</string>
+    <string name="youtube">YouTube</string>
+    <string name="txt_app_name">Tên ứng dụng</string>
+
+    <string name="txt_toast_ads">Hành động này có thể chứa quảng cáo</string>
+    <string name="txt_loading_ads">Đang tải quảng cáo…</string>
+    <string name="txt_welcome_to_back">Chào mừng trở lại</string>
+
+    <string name="txt_tab">Thẻ</string>
+    <string name="txt_progress">Tiến độ</string>
+    <string name="txt_player">Người chơi</string>
+    <string name="txt_video_downloader">Trình tải xuống video</string>
+    <string name="txt_1">1</string>
+    <string name="txt_search_or_type_url">Tìm kiếm hoặc nhập URL</string>
+    <string name="txt_facebook">Facebook</string>
+    <string name="txt_instagram">Instagram</string>
+    <string name="txt_youtube">YouTube</string>
+    <string name="txt_tiktok">Tiktok</string>
+    <string name="txt_no_records">Không có bản ghi nào</string>
+    <string name="txt_how_to_download">Cách tải xuống</string>
+    <string name="txt_all_videos">Tất cả Video</string>
+    <string name="txt_settings">Cài đặt</string>
+    <string name="txt_download">Tải xuống</string>
+    <string name="txt_download_location">Vị trí tải xuống</string>
+    <string name="txt_video_download_location">/storage/emulated/0/Download/Video Downloader</string>
+    <string name="txt_download_with_wi_fi_only">Chỉ tải xuống bằng Wi-Fi</string>
+    <string name="txt_wifi">Wifi</string>
+    <string name="txt_browser">Trình duyệt</string>
+    <string name="txt_on">Bật</string>
+    <string name="txt_off">Tắt</string>
+    <string name="txt_block_ads">Chặn quảng cáo</string>
+    <string name="txt_save_your_passwords">Lưu mật khẩu của bạn</string>
+    <string name="txt_recommended">Được đề xuất</string>
+    <string name="txt_search_engine">Công cụ tìm kiếm</string>
+    <string name="txt_google">Google</string>
+    <string name="txt_clear_cache">Xóa bộ nhớ cache</string>
+    <string name="txt_clear_browser_history">Xóa lịch sử trình duyệt</string>
+    <string name="txt_clear_cookies">Xóa cookie</string>
+    <string name="txt_sync_to_gallery">Đồng bộ hóa với Thư viện</string>
+    <string name="txt_help">Trợ giúp</string>
+    <string name="txt_next">Tiếp theo</string>
+    <string name="txt_got_it">Hiểu rồi</string>
+    <string name="txt_feedback">Phản hồi</string>
+    <string name="txt_privacy_policy">Chính sách bảo mật</string>
+    <string name="txt_share_with_friends">Chia sẻ với bạn bè</string>
+    <string name="txt_first_slide">Đi tới trang web</string>
+    <string name="txt_second_slide">Phát video</string>
+    <string name="txt_third_slide">Nhấp vào nút \n tải xuống</string>
+    <string name="txt_fourth_slide">Vui lòng xin PHÉP từ chủ sở hữu trước khi \n bạn báo cáo video hoặc ảnh; \n\n Mọi hành động trái phép (tải lên lại hoặc \n tải xuống nội dung) và/hoặc vi phạm \n quyền sở hữu trí tuệ là trách nhiệm duy nhất của \n người dùng.</string>
+    <string name="txt_number_1">1</string>
+    <string name="txt_number_2">2</string>
+    <string name="txt_number_3">3</string>
+    <string name="txt_number_4">Tuyên bố miễn trừ trách nhiệm</string>
+    <string name="txt_heading_share"><![CDATA[Cảm ơn bạn đã sử dụng Tải xuống video & \n Ace Player]]></string>
+    <string name="txt_des_share">Bạn có thích nó không? Hãy chia sẻ nó và để nhiều người hơn biết \n về nó!</string>
+    <string name="txt_share_now">chia sẻ ngay</string>
+    <string name="txt_later">để sau</string>
+    <string name="txt_type">Loại</string>
+    <string name="txt_heading_like">Tại sao bạn không thích ứng dụng này?</string>
+    <string name="txt_feedback_des">Vui lòng mô tả vấn đề của bạn (ít nhất 6 ký tự)</string>
+    <string name="txt_submit">Gửi</string>
+    <string name="txt_heading_rating">Cảm ơn sự hỗ trợ của bạn!</string>
+    <string name="txt_des_rating">Chúng tôi sẽ rất biết ơn nếu bạn có thể đánh giá \n chúng tôi.</string>
+    <string name="txt_rate">Xếp hạng</string>
+    <string name="txt_put_link_here">Đặt liên kết tại đây</string>
+    <string name="txt_parse">Dán đường dẫn</string>
+    <string name="txt_download2">Tải xuống</string>
+    <string name="txt_no_video_downloaded">Không có video nào được tải xuống</string>
+    <string name="txt_please_install_app_from_google_play_first">Vui lòng cài đặt ứng dụng từ Google play trước</string>
+    <string name="txt_pinterest">Pinterest</string>
+    <string name="txt_from_website">Trang web</string>
+    <string name="txt_cannot_start_download_a_download_is_already_in_progress">Không thể bắt đầu tải xuống. quá trình tải xuống đang được tiến hành</string>
+    <string name="txt_grant_storage_permission_and_retry">Cấp quyền lưu trữ và thử lại</string>
+    <string name="txt_download_successful">Tải xuống thành công</string>
+    <string name="txt_fail_to_download">Không tải xuống được</string>
+    <string name="txt_download_failed">Tải xuống không thành công</string>
+    <string name="txt_00_00">00:00</string>
+    <string name="txt_waiting_for_wi_fi">Đang chờ Wi-Fi</string>
+
+    <string name="media_url_dash"><![CDATA[https://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?as=fmp4_audio_clear,fmp4_sd_hd_clear&sparams=ip,ipbits,expire,source ,id,as&ip=0.0.0.0&ipbits=0&expire=19000000000&signature=51AF5F39AB0CEC3E5497CD9C900EBFEAECCCB5C7.8506521BFC350652163895D4C26DEE124209AA9E&key=ik0]]></string>
+    <string name="media_url_mp4">https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4</string>
+    <string name="txt_share">Chia sẻ</string>
+    <string name="txt_are_you_sure_you_want_to_delete">Bạn có chắc chắn muốn xóa không?</string>
+    <string name="txt_cancel">hủy</string>
+    <string name="txt_copy_url">Sao chép URL</string>
+    <string name="txt_view_on_app">Xem trên ứng dụng</string>
+    <string name="txt_repost">Đăng lại</string>
+    <string name="txt_copied_to_clipbroad">Đã sao chép vào clipbroad</string>
+    <string name="txt_scan_ad">Quét (AD)</string>
+    <string name="txt_general_settings">Cài đặt chung</string>
+    <string name="txt_language_options">Tùy chọn ngôn ngữ</string>
+    <string name="txt_english">Tiếng Anh</string>
+    <string name="txt_please_turn_off_option_download_with_wifi_only">Vui lòng tắt tùy chọn Chỉ tải xuống bằng Wi-Fi</string>
+    <string name="txt_no_internet">Không có Internet</string>
+    <string name="txt_please_enter_the_link">Vui lòng nhập liên kết</string>
+    <string name="txt_history_cleared">Đã xóa lịch sử</string>
+    <string name="txt_cache_cleared">Đã xóa bộ đệm</string>
+    <string name="txt_ok">Được</string>
+    <string name="txt_download_fail">Tải xuống không thành công</string>
+    <string name="txt_too_many_ads">Quá nhiều quảng cáo</string>
+    <string name="txt_low_quality">Chất lượng thấp</string>
+    <string name="txt_other">Khác</string>
+    <string name="txt_language">Ngôn ngữ</string>
+
+
+
+
+</resources>
