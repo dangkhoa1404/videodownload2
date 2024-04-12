@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.provider.MediaStore
 import android.text.format.DateUtils
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lutech.videodownloader.R
 import com.lutech.videodownloader.model.Audio
 import com.lutech.videodownloader.model.Folder
 import com.lutech.videodownloader.utils.Constants
@@ -60,6 +62,9 @@ class AudioViewModel : ViewModel() {
                             val audioFile =
                                 File(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA)))
 
+                            val artistName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST))
+                                ?: context.getString(R.string.txt_unknown)
+
                             if (audioFile.exists() && audioFile.length() != 0L && Utils.getDurationByPath(audioFile.path) >= 1000) {
                                 val path = audioFile.path
                                 val name = audioFile.name.substringBeforeLast(".")
@@ -68,6 +73,7 @@ class AudioViewModel : ViewModel() {
                                     .format(Date(audioFile.lastModified()))
                                 val parentName = audioFile.parentFile?.name ?: "null"
                                 val duration = DateUtils.formatElapsedTime(Utils.getDurationByPath(audioFile.path) / 1000)
+                                val artist = artistName
                                 listAudios.add(
                                     Audio(
                                         path,
@@ -75,7 +81,8 @@ class AudioViewModel : ViewModel() {
                                         sizePath,
                                         dateAdded,
                                         parentName,
-                                        duration
+                                        duration,
+                                        artist
                                     )
                                 )
                             }
@@ -87,58 +94,6 @@ class AudioViewModel : ViewModel() {
                 _listTotalAudio.postValue(listAudios.size)
             }
             loadingView(mViewLoading, false)
-        }
-    }
-
-    fun getListAudiosByFolder(fileDir: File) {
-        val listAudio = arrayListOf<Audio>()
-        val files = fileDir.listFiles()
-        if(files != null) {
-            for (i in files.indices) {
-                try {
-
-                    if (files[i].exists() && files[i].length() != 0L && Utils.getDurationByPath(files[i].path) >= 1000
-                    ) {
-                        val video = files[i]
-                        val path = video.path
-                        val name = video.name.substringBeforeLast(".")
-                        val sizePath = Utils.formatSizeFile(video.length().toDouble())
-                        val dateAdded = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
-                            .format(Date(video.lastModified()))
-                        val parentName = video.parentFile?.name ?: "null"
-                        val duration = DateUtils.formatElapsedTime(Utils.getDurationByPath(video.path) / 1000)
-                        listAudio.add(
-                            Audio(
-                                path,
-                                name,
-                                sizePath,
-                                dateAdded,
-                                parentName,
-                                duration
-                            )
-                        )
-                    }
-
-                } catch (e: IllegalArgumentException) {
-                    e.printStackTrace()
-                } catch (e: RuntimeException) {
-                    e.printStackTrace()
-                }
-            }
-
-            listAudio.sortWith { track1, track2 ->
-                val k: Long = File(track2.pathOfAudio).lastModified() - File(track1.pathOfAudio).lastModified()
-                if (k > 0) {
-                    1
-                } else if (k == 0L) {
-                    0
-                } else {
-                    -1
-                }
-            }
-            _listAllAudio.value = listAudio
-        } else {
-            _listAllAudio.value = arrayListOf()
         }
     }
 

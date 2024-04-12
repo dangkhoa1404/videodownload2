@@ -269,4 +269,10 @@
 
     <string name="txt_please_wait">Please wait…</string>
 
+    <string name="txt_unknown">Unknown</string>
+
+    <string name="txt_default_speed_audio" translatable="false">1.0X</string>
+
+    <string name="txt_duration_audio" translatable="false">00:00</string>
+
 </resources>

@@ -177,7 +177,7 @@ class VideoFragment : Fragment() {
                         override fun onItemPosClick(position: Int) {
 
                         }
-            })
+                    })
 
             mVideoBinding.rcvListVideos.adapter = mVideoAdapter
         }

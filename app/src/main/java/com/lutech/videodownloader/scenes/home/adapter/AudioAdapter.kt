@@ -79,6 +79,7 @@ class AudioAdapter(
                         viewType2.tvParentFile.text = this.parentOfAudio
 
                         viewType2.tvMemoryOfFile.text = this.memoryOfAudio
+
                         viewType2.tvDayAdded.text = this.dateAddedAudio
 
                         viewType2.tvDurationOfFile.text = this.durationOfAudio
@@ -114,6 +115,11 @@ class AudioAdapter(
 
     override fun getItemCount(): Int {
         return listMusic.size
+    }
+
+    fun filterListAudio(mNewListAudio : List<Audio>) {
+        listMusic = mNewListAudio
+        notifyDataSetChanged()
     }
 
     interface OnItemMusicListener {

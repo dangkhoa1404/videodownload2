@@ -61,4 +61,6 @@ object Constants {
     const val IS_FROM_HOME_ACTIVITY: String = "IS_FROM_MAIN_ACTIVITY"
 
     const val ALL_FILE: String = "All"
+
+    const val POS_AUDIO: String = "POS_AUDIO"
 }

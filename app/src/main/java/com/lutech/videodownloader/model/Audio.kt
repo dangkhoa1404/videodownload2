@@ -7,5 +7,6 @@ data class Audio(
     var dateAddedAudio : String,
     var parentOfAudio : String,
     var durationOfAudio : String,
+    var artistOfAudio : String,
 )
 

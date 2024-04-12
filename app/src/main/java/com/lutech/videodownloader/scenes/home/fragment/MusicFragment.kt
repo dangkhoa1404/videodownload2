@@ -1,8 +1,8 @@
 package com.lutech.videodownloader.scenes.home.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +15,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lutech.videodownloader.R
+import com.lutech.videodownloader.database.ListAudio
 import com.lutech.videodownloader.databinding.DialogListFolderBinding
 import com.lutech.videodownloader.databinding.FragmentMusicBinding
 import com.lutech.videodownloader.model.Audio
@@ -24,6 +25,8 @@ import com.lutech.videodownloader.scenes.home.adapter.AudioAdapter
 import com.lutech.videodownloader.scenes.home.adapter.FolderAdapter
 import com.lutech.videodownloader.scenes.home.viewmodel.AudioViewModel
 import com.lutech.videodownloader.scenes.home.viewmodel.HomeViewModel
+import com.lutech.videodownloader.scenes.playaudio.PlayAudioActivity
+import com.lutech.videodownloader.utils.Constants
 import com.lutech.videodownloader.utils.Utils
 import com.lutech.videodownloader.utils.gone
 import com.lutech.videodownloader.utils.sharedPreference
@@ -51,6 +54,10 @@ class MusicFragment : Fragment() {
     private var mListFolderAudioDialog : BottomSheetDialog? = null
 
     private var mFolderAdapter : FolderAdapter? = null
+
+    private var mAudioAdapter : AudioAdapter? = null
+
+    private var mNameFolder : String = Constants.ALL_FILE
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,13 +93,28 @@ class MusicFragment : Fragment() {
                 mListFolderAudioDialog!!.show()
             }
         }
+
+        mMusicBinding.llFolderFilter.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.Main) {
+                gone(mMusicBinding.clFilter)
+                withContext(Dispatchers.IO) {
+                    mNameFolder = Constants.ALL_FILE
+                    if(mFolderAdapter!!.mPosCheckCurrentFolder != 0) {
+                        mAudioAdapter!!.filterListAudio(mListAudio)
+                    }
+                }
+                val mOldPos = mFolderAdapter!!.mPosCheckCurrentFolder
+                mFolderAdapter!!.mPosCheckCurrentFolder = 0
+                mFolderAdapter!!.notifyItemChanged(mOldPos)
+                mFolderAdapter!!.notifyItemChanged(mFolderAdapter!!.mPosCheckCurrentFolder)
+            }
+        }
     }
 
     private fun setListenerVM() {
 
         mHomeVM.isAudioGranted.observe(viewLifecycleOwner) {
             if (it) {
-                Log.d("===>204924", "all audio: ")
                 mAudioVM.getListAudios(mContext!!, mMusicBinding.sflLoadingData.root)
                 mAudioVM.getAllFoldersAudios(mContext!!)
             } else {
@@ -138,26 +160,43 @@ class MusicFragment : Fragment() {
         if(mListAudio.isEmpty()) {
             visible(mMusicBinding.llMusicNotFound.root)
         } else {
-            gone(mMusicBinding.llMusicNotFound.root)
-            mMusicBinding.rcvListMusics.apply {
-                layoutManager = if(mContext!!.sharedPreference.viewType == 1)
-                    LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL ,false)
-                else
-                    GridLayoutManager(mContext, 2)
+            lifecycleScope.launch(Dispatchers.Main) {
+                gone(mMusicBinding.llMusicNotFound.root)
 
-                adapter =
-                    AudioAdapter(mContext!!, mContext!!.sharedPreference.viewType, mListAudio, object : AudioAdapter.OnItemMusicListener {
-                        override fun onItemMusicClick(position: Int) {
+                withContext(Dispatchers.IO) {
+                    mAudioAdapter =
+                        AudioAdapter(
+                            mContext!!,
+                            mContext!!.sharedPreference.viewType,
+                            if (mNameFolder == Constants.ALL_FILE) mListAudio else mListAudio.filter { it.parentOfAudio == mNameFolder},
+                            object : AudioAdapter.OnItemMusicListener {
+                                override fun onItemMusicClick(position: Int) {
+                                    lifecycleScope.launch(Dispatchers.Main) {
+                                        withContext(Dispatchers.IO) {
+                                            ListAudio.mListAudio.addAll(mListAudio)
+                                        }
+                                        startActivity(Intent(mContext, PlayAudioActivity::class.java).apply {
+                                            putExtra(Constants.POS_AUDIO, position)
+                                        })
+                                    }
+                                }
+                                override fun onItemPosClick(position: Int) {
 
-                        }
+                                }
+                            })
+                }
 
-                        override fun onItemPosClick(position: Int) {
+                mMusicBinding.rcvListMusics.apply {
+                    layoutManager = if(mContext!!.sharedPreference.viewType == 1)
+                        LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL ,false)
+                    else
+                        GridLayoutManager(mContext, 2)
 
-                        }
-                    })
+                    adapter = mAudioAdapter
+
+                }
             }
         }
-
     }
 
     private fun setViewListFolderAudioDialog(mListFolderAudio : List<Folder>) {
@@ -176,6 +215,17 @@ class MusicFragment : Fragment() {
                         if(mOldPos != mFolderAdapter!!.mPosCheckCurrentFolder) {
                             mFolderAdapter!!.notifyItemChanged(mOldPos)
                             mFolderAdapter!!.notifyItemChanged(mFolderAdapter!!.mPosCheckCurrentFolder)
+
+                            if(mFolderAdapter!!.mPosCheckCurrentFolder == 0) {
+                                gone(mMusicBinding.clFilter)
+                                mNameFolder = Constants.ALL_FILE
+                                mAudioAdapter!!.filterListAudio(mListAudio)
+                            } else {
+                                mMusicBinding.tvNameFolder.text = mListFolderAudio[mFolderAdapter!!.mPosCheckCurrentFolder].folderName
+                                visible(mMusicBinding.clFilter)
+                                mNameFolder = mListFolderAudio[mFolderAdapter!!.mPosCheckCurrentFolder].folderName
+                                mAudioAdapter!!.filterListAudio(mListAudio.filter { it.parentOfAudio ==  mListFolderAudio[mFolderAdapter!!.mPosCheckCurrentFolder].folderName})
+                            }
                         }
 
                         mListFolderAudioDialog!!.dismiss()
@@ -189,7 +239,7 @@ class MusicFragment : Fragment() {
                     justifyContent = JustifyContent.FLEX_START
                 }
                 adapter = mFolderAdapter
-                //cheat lỏ
+
                 layoutParams.height = resources.displayMetrics.heightPixels / 2
             }
         }

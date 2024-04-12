@@ -96,4 +96,10 @@
 
     <color name="color_bg_ads">#FEF6F4</color>
 
+    <color name="color_bg_play_audio">#3C3C3C</color>
+
+    <color name="color_bg_play_audio_text_artist">#808080</color>
+
+    <color name="color_bg_play_audio_icon_play_audio">#747474</color>
+
 </resources>

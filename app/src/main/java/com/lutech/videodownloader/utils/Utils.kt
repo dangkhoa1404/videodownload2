@@ -182,9 +182,9 @@ object Utils {
     }
 
     //New Ver 1
-    fun formatDurationFile(durationFile: Long): String {
-        return String.format("%02d:%02d", durationFile / 60000, durationFile % 60000 / 1000)
-    }
+//    fun formatDurationFile(durationFile: Long): String {
+//        return String.format("%02d:%02d", durationFile / 60000, durationFile % 60000 / 1000)
+//    }
 
     fun formatSizeFile(sizeFile: Double): String {
         val totalMemory = sizeFile / 1024.0
