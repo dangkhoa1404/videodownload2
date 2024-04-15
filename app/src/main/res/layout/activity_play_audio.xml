@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_bg_play_audio"
-    tools:context=".scenes.playaudio.PlayAudioActivity">
+    tools:context=".scenes.playaudio.activity.PlayAudioActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -78,14 +78,15 @@
                     android:ellipsize="marquee"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
-                    android:fontFamily="@font/font_rubik_medium"
+                    android:fontFamily="@font/font_rubik_regular"
                     android:freezesText="true"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:text="@string/txt_filter_by_folder"
                     android:textColor="@color/color_white"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvArtistName"
@@ -94,7 +95,7 @@
                     android:fontFamily="@font/font_rubik_regular"
                     android:text="@string/txt_filter_by_folder"
                     android:textColor="@color/color_bg_play_audio_text_artist"
-                    android:textSize="@dimen/_9ssp" />
+                    android:textSize="@dimen/_10ssp" />
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -247,6 +248,20 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/color_white" />
+
+            <ImageView
+                android:id="@+id/imgUnmuteAudio"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/bg_event_click_item"
+                android:padding="@dimen/_8sdp"
+                android:src="@drawable/ic_volume_mute"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imgPrevious"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/color_white" />
 

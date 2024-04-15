@@ -3,6 +3,7 @@ package com.lutech.videodownloader.scenes.home.fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +26,7 @@ import com.lutech.videodownloader.scenes.home.adapter.AudioAdapter
 import com.lutech.videodownloader.scenes.home.adapter.FolderAdapter
 import com.lutech.videodownloader.scenes.home.viewmodel.AudioViewModel
 import com.lutech.videodownloader.scenes.home.viewmodel.HomeViewModel
-import com.lutech.videodownloader.scenes.playaudio.PlayAudioActivity
+import com.lutech.videodownloader.scenes.playaudio.activity.PlayAudioActivity
 import com.lutech.videodownloader.utils.Constants
 import com.lutech.videodownloader.utils.Utils
 import com.lutech.videodownloader.utils.gone
@@ -173,6 +174,7 @@ class MusicFragment : Fragment() {
                                 override fun onItemMusicClick(position: Int) {
                                     lifecycleScope.launch(Dispatchers.Main) {
                                         withContext(Dispatchers.IO) {
+                                            ListAudio.mListAudio.clear()
                                             ListAudio.mListAudio.addAll(mListAudio)
                                         }
                                         startActivity(Intent(mContext, PlayAudioActivity::class.java).apply {

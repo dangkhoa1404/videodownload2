@@ -274,5 +274,8 @@
     <string name="txt_default_speed_audio" translatable="false">1.0X</string>
 
     <string name="txt_duration_audio" translatable="false">00:00</string>
+    <string name="txt_now_playing">Now Playing</string>
+    <string name="txt_open_parenthesis" translatable="false">(</string>
+    <string name="txt_close_parenthesis" translatable="false">)</string>
 
 </resources>

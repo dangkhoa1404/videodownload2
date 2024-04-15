@@ -29,7 +29,10 @@
         android:theme="@style/Theme.VideoDownloader"
         tools:replace="android:theme">
         <activity
-            android:name=".scenes.playaudio.PlayAudioActivity"
+            android:name=".scenes.playvideo.activity.PlayVideoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".scenes.playaudio.activity.PlayAudioActivity"
             android:exported="false" />
         <activity
             android:name=".scenes.setting.SettingsActivity"
@@ -88,23 +91,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/path" />
         </provider>
-
-<!--        <provider-->
-<!--            android:name="androidx.core.content.FileProvider"-->
-<!--            android:authorities="${applicationId}.provider"-->
-<!--            android:exported="false"-->
-<!--            android:grantUriPermissions="true"-->
-<!--            android:permission="android.permission.MANAGE_DOCUMENTS"-->
-<!--            tools:ignore="WrongManifestParent">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.content.action.DOCUMENTS_PROVIDER" />-->
-<!--            </intent-filter>-->
-
-<!--            <meta-data-->
-<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
-<!--                android:resource="@xml/provider_paths" />-->
-<!--        </provider>-->
-
     </application>
 
 </manifest>
