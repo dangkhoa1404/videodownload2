@@ -1,6 +1,7 @@
 package com.lutech.videodownloader.scenes.home.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lutech.videodownloader.R
+import com.lutech.videodownloader.database.ListVideo
 import com.lutech.videodownloader.databinding.DialogListFolderBinding
 import com.lutech.videodownloader.databinding.FragmentVideoBinding
 import com.lutech.videodownloader.model.Folder
@@ -23,6 +25,7 @@ import com.lutech.videodownloader.scenes.home.adapter.FolderAdapter
 import com.lutech.videodownloader.scenes.home.adapter.VideoAdapter
 import com.lutech.videodownloader.scenes.home.viewmodel.HomeViewModel
 import com.lutech.videodownloader.scenes.home.viewmodel.VideoViewModel
+import com.lutech.videodownloader.scenes.playvideo.activity.PlayVideoActivity
 import com.lutech.videodownloader.utils.Constants
 import com.lutech.videodownloader.utils.Utils
 import com.lutech.videodownloader.utils.gone
@@ -172,7 +175,17 @@ class VideoFragment : Fragment() {
                     if (mNameFolder == Constants.ALL_FILE) mListVideo else mListVideo.filter { it.parentoOfVideo == mNameFolder},
                     object : VideoAdapter.OnItemVideoListener {
                         override fun onItemVideoClick(position: Int) {
-
+                            lifecycleScope.launch(Dispatchers.Main) {
+                                withContext(Dispatchers.IO) {
+                                    if(ListVideo.mListVideo.isNotEmpty()) {
+                                        ListVideo.mListVideo.clear()
+                                    }
+                                    ListVideo.mListVideo.addAll(mListVideo)
+                                }
+                                startActivity(Intent(mContext, PlayVideoActivity::class.java).apply {
+                                    putExtra(Constants.POS_VIDEO, position)
+                                })
+                            }
                         }
                         override fun onItemPosClick(position: Int) {
 

@@ -20,7 +20,6 @@ import com.lutech.videodownloader.scenes.language.activity.LanguageActivity
 import com.lutech.videodownloader.utils.Constants
 import com.lutech.videodownloader.utils.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.header_setting_activity.*
 import kotlinx.android.synthetic.main.setting_component_browser.*
@@ -90,63 +89,63 @@ class SettingActivity : AppCompatActivity() {
         }
 
         btnShareWithFriends.setOnClickListener {
-            val bottomshareDialog = BottomSheetDialog(
-                this@SettingActivity, R.style.BottomSheetDialogTheme
-            )
-            val bottomshareView = LayoutInflater.from(applicationContext).inflate(
-                R.layout.bottom_share_layout, findViewById(R.id.bottomshareSheet) as LinearLayout?
-            )
-            bottomshareView.findViewById<View>(R.id.btn_share_now).setOnClickListener {
-//                Toast.makeText(this@SettingActivity, "Share...", Toast.LENGTH_SHORT).show()
-                shareApp()
-                bottomshareDialog.dismiss()
-            }
-            bottomshareView.findViewById<View>(R.id.btn_later).setOnClickListener {
-
-                bottomshareDialog.dismiss()
-            }
-
-            bottomshareDialog.setContentView(bottomshareView)
-            bottomshareDialog.show()
+//            val bottomshareDialog = BottomSheetDialog(
+//                this@SettingActivity, R.style.BottomSheetDialogTheme
+//            )
+//            val bottomshareView = LayoutInflater.from(applicationContext).inflate(
+//                R.layout.bottom_share_layout, findViewById(R.id.bottomshareSheet) as LinearLayout?
+//            )
+//            bottomshareView.findViewById<View>(R.id.btn_share_now).setOnClickListener {
+////                Toast.makeText(this@SettingActivity, "Share...", Toast.LENGTH_SHORT).show()
+//                shareApp()
+//                bottomshareDialog.dismiss()
+//            }
+//            bottomshareView.findViewById<View>(R.id.btn_later).setOnClickListener {
+//
+//                bottomshareDialog.dismiss()
+//            }
+//
+//            bottomshareDialog.setContentView(bottomshareView)
+//            bottomshareDialog.show()
         }
 
         btnFeedBack.setOnClickListener {
             val bottomshareDialog = BottomSheetDialog(
                 this@SettingActivity, R.style.BottomSheetDialogTheme
             )
-            val bottomshareView = LayoutInflater.from(applicationContext).inflate(
-                R.layout.bottom_feedback_layout, findViewById(R.id.bottomfeedbackSheet) as LinearLayout?
-            )
+//            val bottomshareView = LayoutInflater.from(applicationContext).inflate(
+//                R.layout.bottom_feedback_layout, findViewById(R.id.bottomfeedbackSheet) as LinearLayout?
+//            )
 
-            bottomshareView.findViewById<View>(R.id.btn_submit).setOnClickListener {
-
-                feedBack()
-//                Toast.makeText(this@SettingActivity, "Feedback...", Toast.LENGTH_SHORT).show()
-                bottomshareDialog.dismiss()
-            }
-
-            bottomshareView.findViewById<View>(R.id.tag1).setOnClickListener {
-                errorUserPick += getString(R.string.download_failed) + "\n"
-            }
-
-            bottomshareView.findViewById<View>(R.id.tag2).setOnClickListener {
-                errorUserPick += getString(R.string.txt_too_many_ads) + "\n"
-
-            }
-
-            bottomshareView.findViewById<View>(R.id.tag3).setOnClickListener {
-                errorUserPick += getString(R.string.txt_low_quality) + "\n"
-
-            }
-
-            bottomshareView.findViewById<View>(R.id.tag4).setOnClickListener {
-                errorUserPick += getString(R.string.txt_other) + "\n"
-
-            }
-
-
-            bottomshareDialog.setContentView(bottomshareView)
-            bottomshareDialog.show()
+//            bottomshareView.findViewById<View>(R.id.btn_submit).setOnClickListener {
+//
+//                feedBack()
+////                Toast.makeText(this@SettingActivity, "Feedback...", Toast.LENGTH_SHORT).show()
+//                bottomshareDialog.dismiss()
+//            }
+//
+//            bottomshareView.findViewById<View>(R.id.tag1).setOnClickListener {
+//                errorUserPick += getString(R.string.download_failed) + "\n"
+//            }
+//
+//            bottomshareView.findViewById<View>(R.id.tag2).setOnClickListener {
+//                errorUserPick += getString(R.string.txt_too_many_ads) + "\n"
+//
+//            }
+//
+//            bottomshareView.findViewById<View>(R.id.tag3).setOnClickListener {
+//                errorUserPick += getString(R.string.txt_low_quality) + "\n"
+//
+//            }
+//
+//            bottomshareView.findViewById<View>(R.id.tag4).setOnClickListener {
+//                errorUserPick += getString(R.string.txt_other) + "\n"
+//
+//            }
+//
+//
+//            bottomshareDialog.setContentView(bottomshareView)
+//            bottomshareDialog.show()
         }
 
         btnLike.setOnClickListener {
@@ -187,12 +186,12 @@ class SettingActivity : AppCompatActivity() {
             Utils.setIsBlockAdsSharePreference(this, Constants.isBlockAds)
             Log.d("handleEvent", "----:isBlockAds-- " + Constants.isBlockAds)
         }
-        btnClearBrowserHistory.setOnClickListener {
-            Toasty.success(this, getString(R.string.txt_history_cleared), Toast.LENGTH_LONG).show()
-        }
-        btnClearCache.setOnClickListener {
-            Toasty.success(this, getString(R.string.txt_cache_cleared), Toast.LENGTH_LONG).show()
-        }
+//        btnClearBrowserHistory.setOnClickListener {
+//            Toasty.success(this, getString(R.string.txt_history_cleared), Toast.LENGTH_LONG).show()
+//        }
+//        btnClearCache.setOnClickListener {
+//            Toasty.success(this, getString(R.string.txt_cache_cleared), Toast.LENGTH_LONG).show()
+//        }
         btnSearchEngine.setOnClickListener {
             Toast.makeText(this, "btnSearchEngine", Toast.LENGTH_SHORT).show()
 

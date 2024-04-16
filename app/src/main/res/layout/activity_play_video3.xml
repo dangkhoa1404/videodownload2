@@ -6,10 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".scenes.playvideo.activity.PlayVideoActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:animateLayoutChanges="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.github.vkay94.dtpv.DoubleTapPlayerView
+            android:id="@+id/previewPlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="@color/color_black"
+            app:controller_layout_id="@layout/exo_playback_control_view_yt"
+            app:dtpv_controller="@id/ytOverlay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.github.vkay94.dtpv.youtube.YouTubeOverlay
+            android:id="@+id/ytOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77000000"
+            android:visibility="invisible"
+            app:yt_playerView="@id/previewPlayerView"
+            tools:visibility="visible" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

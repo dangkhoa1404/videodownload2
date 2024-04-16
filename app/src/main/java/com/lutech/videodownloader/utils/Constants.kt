@@ -63,4 +63,6 @@ object Constants {
     const val ALL_FILE: String = "All"
 
     const val POS_AUDIO: String = "POS_AUDIO"
+
+    const val POS_VIDEO: String = "POS_VIDEO"
 }

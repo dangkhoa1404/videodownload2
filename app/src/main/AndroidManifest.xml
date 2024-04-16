@@ -30,6 +30,7 @@
         tools:replace="android:theme">
         <activity
             android:name=".scenes.playvideo.activity.PlayVideoActivity"
+            android:configChanges="orientation|keyboard|screenSize"
             android:exported="false" />
         <activity
             android:name=".scenes.playaudio.activity.PlayAudioActivity"
@@ -50,13 +51,11 @@
             android:name=".scenes.PlayVideoActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:exported="true" />
-        <activity
-            android:name=".scenes.PlayVideoActivity2"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="true" />
+
         <activity
             android:name=".scenes.language.activity.LanguageActivity"
             android:exported="false" />
+
         <activity
             android:name=".scenes.WatchVideoActivity"
             android:configChanges="orientation|screenSize|screenLayout"
@@ -78,9 +77,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".StreamingExampleActivity"
-            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
