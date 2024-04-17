@@ -36,4 +36,14 @@ class HomeViewModel : ViewModel() {
     fun setLayoutForRCV(isVerticalView : Int) {
         _newViewRCV.value = isVerticalView
     }
+
+    //list video in progress
+    private var _isVideoIsProgressGranted = MutableLiveData<Boolean>()
+
+    val isVideoIsProgressGranted: LiveData<Boolean>
+        get() = _isVideoIsProgressGranted
+
+    fun checkAllowVideoInProgress(isGranted: Boolean) {
+        _isVideoIsProgressGranted.value = isGranted
+    }
 }

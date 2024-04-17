@@ -51,37 +51,35 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
                 android:fontFamily="@font/font_rubik_regular"
-                android:freezesText="true"
                 android:marqueeRepeatLimit="marquee_forever"
+                android:maxLines="2"
                 android:paddingHorizontal="@dimen/_15sdp"
                 android:scrollHorizontally="true"
-                android:singleLine="true"
+                android:singleLine="false"
                 android:text="@string/txt_filter_by_folder"
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgPlaylistAudio"
+                app:layout_constraintEnd_toStartOf="@+id/imgPlaylistVideo"
                 app:layout_constraintStart_toEndOf="@+id/imgBack"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imgPlaylistAudio"
+                android:id="@+id/imgPlaylistVideo"
                 android:layout_width="@dimen/_27sdp"
                 android:layout_height="@dimen/_27sdp"
                 android:background="@drawable/bg_item_back"
                 android:padding="@dimen/_3sdp"
                 android:src="@drawable/ic_playlist_new"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imgSharePathAudio"
+                app:layout_constraintEnd_toStartOf="@+id/imgMoreFeatureVideo"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/color_white" />
 
             <ImageView
-                android:id="@+id/imgSharePathAudio"
+                android:id="@+id/imgMoreFeatureVideo"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
                 android:background="@drawable/bg_item_back"
@@ -187,8 +185,8 @@
 
             <LinearLayout
                 android:id="@+id/exo_ll_controls"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
+                android:layout_width="@dimen/_42sdp"
+                android:layout_height="@dimen/_42sdp"
                 android:background="@drawable/bg_play_pause_view"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -200,12 +198,14 @@
                 <ImageButton
                     android:id="@id/exo_play"
                     style="@style/ExoMediaButton.Play"
+                    android:padding="@dimen/_3sdp"
                     android:scaleType="fitCenter"
                     tools:ignore="ContentDescription" />
 
                 <ImageButton
                     android:id="@id/exo_pause"
                     style="@style/ExoMediaButton.Pause"
+                    android:padding="@dimen/_3sdp"
                     android:scaleType="fitCenter"
                     tools:ignore="ContentDescription" />
 
@@ -225,7 +225,7 @@
                 app:tint="@color/color_white" />
 
             <ImageView
-                android:id="@+id/imgUnmuteAudio"
+                android:id="@+id/imgUnmuteVideo"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:background="@drawable/bg_event_click_item"
@@ -239,7 +239,7 @@
                 app:tint="@color/color_white" />
 
             <ImageView
-                android:id="@+id/imgMuteAudio"
+                android:id="@+id/imgMuteVideo"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:background="@drawable/bg_event_click_item"

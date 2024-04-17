@@ -174,8 +174,10 @@ class MusicFragment : Fragment() {
                                 override fun onItemMusicClick(position: Int) {
                                     lifecycleScope.launch(Dispatchers.Main) {
                                         withContext(Dispatchers.IO) {
-                                            ListAudio.mListAudio.clear()
-                                            ListAudio.mListAudio.addAll(mListAudio)
+                                            if(ListAudio.mListAudio.isNotEmpty()) {
+                                                ListAudio.mListAudio.clear()
+                                            }
+                                            ListAudio.mListAudio.addAll(if (mNameFolder == Constants.ALL_FILE) mListAudio else mListAudio.filter { it.parentOfAudio == mNameFolder})
                                         }
                                         startActivity(Intent(mContext, PlayAudioActivity::class.java).apply {
                                             putExtra(Constants.POS_AUDIO, position)

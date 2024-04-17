@@ -21,13 +21,13 @@ open class BaseVideoActivity : AppCompatActivity() {
 
     var videoPlayer: DoubleTapPlayerView? = null
 
-    var player: SimpleExoPlayer? = null
+    var player: ExoPlayer? = null
 
     fun buildMediaSource(mUri: Uri) {
         val dataSourceFactory = DefaultDataSourceFactory(
-            this@BaseVideoActivity,
-            Util.getUserAgent(this@BaseVideoActivity, resources.getString(R.string.app_name)),
-            DefaultBandwidthMeter.Builder(this@BaseVideoActivity).build()
+            this,
+            Util.getUserAgent(this, resources.getString(R.string.app_name)),
+            DefaultBandwidthMeter.Builder(this).build()
         )
         val videoSource = ProgressiveMediaSource.Factory(dataSourceFactory, Mp4ExtractorFactory())
             .createMediaSource(MediaItem.fromUri(mUri))
@@ -40,18 +40,16 @@ open class BaseVideoActivity : AppCompatActivity() {
 
     fun initializePlayer() {
         if (player == null) {
-            val loadControl: LoadControl = DefaultLoadControl.Builder()
-                .setBufferDurationsMs(
-                    MIN_BUFFER_DURATION,
-                    MAX_BUFFER_DURATION,
-                    MIN_PLAYBACK_START_BUFFER,
-                    MIN_PLAYBACK_RESUME_BUFFER
-                )
-                .build()
+//            val loadControl: LoadControl = DefaultLoadControl.Builder()
+//                .setBufferDurationsMs(
+//                    MIN_BUFFER_DURATION,
+//                    MAX_BUFFER_DURATION,
+//                    MIN_PLAYBACK_START_BUFFER,
+//                    MIN_PLAYBACK_RESUME_BUFFER
+//                )
+//                .build()
 
-            player = SimpleExoPlayer.Builder(this)
-                .setLoadControl(loadControl)
-                .build()
+            player = ExoPlayer.Builder(this).build()
 
             videoPlayer?.player = player
         }
@@ -96,13 +94,13 @@ open class BaseVideoActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        const val MIN_BUFFER_DURATION = 15000
-        const val MAX_BUFFER_DURATION = 60000
-        const val MIN_PLAYBACK_START_BUFFER = 2500
-        const val MIN_PLAYBACK_RESUME_BUFFER = 5000
-
-        fun <T: BaseVideoActivity> newIntent(context: Context, activity: Class<T>): Intent =
-            Intent(context, activity)
-    }
+//    companion object {
+//        const val MIN_BUFFER_DURATION = 15000
+//        const val MAX_BUFFER_DURATION = 60000
+//        const val MIN_PLAYBACK_START_BUFFER = 2500
+//        const val MIN_PLAYBACK_RESUME_BUFFER = 5000
+//
+//        fun <T: BaseVideoActivity> newIntent(context: Context, activity: Class<T>): Intent =
+//            Intent(context, activity)
+//    }
 }

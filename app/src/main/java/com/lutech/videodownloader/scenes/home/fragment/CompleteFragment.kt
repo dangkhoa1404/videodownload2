@@ -1,6 +1,7 @@
 package com.lutech.videodownloader.scenes.home.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,15 +9,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.lutech.videodownloader.database.ListVideo
 import com.lutech.videodownloader.databinding.FragmentCompleteBinding
 import com.lutech.videodownloader.model.Video
 import com.lutech.videodownloader.scenes.home.activity.HomeActivity
 import com.lutech.videodownloader.scenes.home.adapter.CompleteAdapter
 import com.lutech.videodownloader.scenes.home.viewmodel.CompleteViewModel
 import com.lutech.videodownloader.scenes.home.viewmodel.HomeViewModel
+import com.lutech.videodownloader.scenes.playvideo.activity.PlayVideoActivity
 import com.lutech.videodownloader.utils.Constants
 import com.lutech.videodownloader.utils.gone
 import com.lutech.videodownloader.utils.visible
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CompleteFragment : Fragment() {
 
@@ -66,7 +74,17 @@ class CompleteFragment : Fragment() {
             mCompleteBinding.rcvListAudioDownloaded.adapter =
                 CompleteAdapter(mContext!!, mListVideoDownloaded, object : CompleteAdapter.OnItemCompleteDownloadedListener {
                     override fun onItemCompleteClick(position: Int) {
-
+                        lifecycleScope.launch(Dispatchers.Main) {
+                            withContext(Dispatchers.IO) {
+                                if(ListVideo.mListVideo.isNotEmpty()) {
+                                    ListVideo.mListVideo.clear()
+                                }
+                                ListVideo.mListVideo.addAll(mListVideoDownloaded)
+                            }
+                            startActivity(Intent(mContext, PlayVideoActivity::class.java).apply {
+                                putExtra(Constants.POS_VIDEO, position)
+                            })
+                        }
                     }
 
                     override fun onItemPosClick(position: Int) {
@@ -96,5 +114,10 @@ class CompleteFragment : Fragment() {
             }
             setListVideoView()
         }
+    }
+
+    override fun onDestroy() {
+        lifecycleScope.cancel()
+        super.onDestroy()
     }
 }

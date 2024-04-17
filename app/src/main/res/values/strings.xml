@@ -277,5 +277,7 @@
     <string name="txt_now_playing">Now Playing</string>
     <string name="txt_open_parenthesis" translatable="false">(</string>
     <string name="txt_close_parenthesis" translatable="false">)</string>
+    <string name="txt_featured">Featured</string>
+    <string name="txt_download_videos_from_multiple_online_platforms_with_case">Download videos from multiple online platforms with case</string>
 
 </resources>

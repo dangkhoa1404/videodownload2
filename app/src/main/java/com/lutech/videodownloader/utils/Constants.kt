@@ -1,7 +1,6 @@
 package com.lutech.videodownloader.utils
 
 import android.os.Environment
-import com.lutech.videodownloader.model.VideoFile
 import java.io.File
 
 object Constants {
@@ -10,20 +9,20 @@ object Constants {
 
 //    const val APP_NAME = "video_downloader"
 
-    const val KEY_APP_OPEN = "keyappopen"
-    const val APP_PACKAGE_DOWNLOAD = "app_package_download"
-    const val LINK_DOWNLOAD = "link_download"
-    const val PACKAGE_INSTAGRAM = "com.instagram.android"
-    const val PACKAGE_FACEBOOK = "com.facebook.katana"
+//    const val KEY_APP_OPEN = "keyappopen"
+//    const val APP_PACKAGE_DOWNLOAD = "app_package_download"
+//    const val LINK_DOWNLOAD = "link_download"
+//    const val PACKAGE_INSTAGRAM = "com.instagram.android"
+//    const val PACKAGE_FACEBOOK = "com.facebook.katana"
     const val PACKAGE_TIKTOK = "com.ss.android.ugc.trill"
-    const val PACKAGE_YOUTUBE = "com.google.android.youtube"
-    const val PACKAGE_PINTEREST = "com.pinterest"
-    const val PACKAGE_WEBSITE = ""
-    var isHasPermission = false
+//    const val PACKAGE_YOUTUBE = "com.google.android.youtube"
+//    const val PACKAGE_PINTEREST = "com.pinterest"
+//    const val PACKAGE_WEBSITE = ""
+//    var isHasPermission = false
 
     lateinit var videoUrl: String
 
-    var listVideoDownloaded: ArrayList<VideoFile>? = null
+//    var listVideoDownloaded: ArrayList<VideoFile>? = null
 
     var packageAppName = ""
 
@@ -65,4 +64,8 @@ object Constants {
     const val POS_AUDIO: String = "POS_AUDIO"
 
     const val POS_VIDEO: String = "POS_VIDEO"
+
+    const val PATH_VIDEO_IN_PROGRESS: String = "PATH_VIDEO_IN_PROGRESS"
+
+    const val NAME_VIDEO_IN_PROGRESS: String = "NAME_VIDEO_IN_PROGRESS"
 }

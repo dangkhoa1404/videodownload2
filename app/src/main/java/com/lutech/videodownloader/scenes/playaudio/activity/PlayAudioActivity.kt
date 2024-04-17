@@ -154,7 +154,7 @@ class PlayAudioActivity : AppCompatActivity() {
             mDialogPlayAudio.apply {
                 rcvListFilePlay.apply {
                     adapter = mPlayAudioAdapter
-                    layoutParams.height = resources.displayMetrics.heightPixels * 3 / 4
+                    layoutParams.height = mDialogListAudioPlay!!.behavior.maxHeight * 3 / 4
                 }
                 tvSizeOfListPlay.text = mListAudioPlay.size.toString()
                 imgBackCloseDialog.setOnClickListener {
@@ -248,8 +248,8 @@ class PlayAudioActivity : AppCompatActivity() {
                         )
 
                         mPlayAudioAdapter!!.apply {
-                            mPlayAudioAdapter!!.notifyItemChanged(oldPos)
-                            mPlayAudioAdapter!!.notifyItemChanged(mPosOfPathAudio)
+                            notifyItemChanged(oldPos)
+                            notifyItemChanged(mPosOfPathAudio)
                         }
                     }
                 } else {
@@ -271,8 +271,8 @@ class PlayAudioActivity : AppCompatActivity() {
                         )
 
                         mPlayAudioAdapter!!.apply {
-                            mPlayAudioAdapter!!.notifyItemChanged(oldPos)
-                            mPlayAudioAdapter!!.notifyItemChanged(mPosOfPathAudio)
+                            notifyItemChanged(oldPos)
+                            notifyItemChanged(mPosOfPathAudio)
                         }
                     }
                 } else {

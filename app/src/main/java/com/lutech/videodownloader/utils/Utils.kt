@@ -248,7 +248,16 @@ object Utils {
         shareIntent.action = Intent.ACTION_SEND
         shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri)
         shareIntent.type = "*/*"
-        context.startActivity(Intent.createChooser(shareIntent, "Share"))
+        context.startActivity(Intent.createChooser(shareIntent, "Share Video"))
+    }
+
+    fun shareLocalVideo(path: String, context: Context) {
+        val sendIntent =  Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_TEXT, path)
+            type = "*/*"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, "Share Video")
+        context.startActivity(shareIntent)
     }
 
     private var mLastClickTime: Long = 0L

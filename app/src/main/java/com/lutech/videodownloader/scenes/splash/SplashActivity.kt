@@ -43,7 +43,13 @@ class SplashActivity :AppCompatActivity() {
     }
 
     private fun initData() {
-        updateYoutubeDL()
+        if(sharedPreference.isUpdateYoutubeDL) {
+            Log.d("===>02492049204", "is update: ")
+            startActivity(Intent(this, HomeActivity::class.java))
+        } else {
+            Log.d("===>02492049204", "is not update: ")
+            updateYoutubeDL()
+        }
     }
 
     private fun initView() {
@@ -64,7 +70,7 @@ class SplashActivity :AppCompatActivity() {
                 when (status) {
                     YoutubeDL.UpdateStatus.DONE -> {
                         Log.d("===>02049299", "done")
-//                        sharedPreference.isUpdateYoutubeDL = true
+                        sharedPreference.isUpdateYoutubeDL = true
                         startActivity(Intent(this, HomeActivity::class.java))
                     }
 

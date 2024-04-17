@@ -36,6 +36,7 @@ import com.lutech.videodownloader.utils.sharedPreference
 import com.bumptech.glide.Glide
 import com.lutech.videodownloader.scenes.home.viewmodel.HomeViewModel
 import com.lutech.videodownloader.scenes.intro.activity.IntroActivity
+import com.lutech.videodownloader.scenes.setting.SettingsActivity
 import com.yausername.youtubedl_android.YoutubeDL
 import com.yausername.youtubedl_android.YoutubeDLRequest
 import com.yausername.youtubedl_android.YoutubeDLResponse
@@ -189,6 +190,10 @@ class DownloadFragment : Fragment() {
                 startActivity(Intent(mContext, IntroActivity::class.java).apply {
                     putExtra(Constants.IS_FROM_HOME_ACTIVITY, true)
                 })
+            }
+
+            imgSetting.setOnClickListener {
+                startActivity(Intent(mContext, SettingsActivity::class.java))
             }
         }
     }

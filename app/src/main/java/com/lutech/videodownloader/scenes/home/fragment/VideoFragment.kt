@@ -180,7 +180,7 @@ class VideoFragment : Fragment() {
                                     if(ListVideo.mListVideo.isNotEmpty()) {
                                         ListVideo.mListVideo.clear()
                                     }
-                                    ListVideo.mListVideo.addAll(mListVideo)
+                                    ListVideo.mListVideo.addAll(if (mNameFolder == Constants.ALL_FILE) mListVideo else mListVideo.filter { it.parentoOfVideo == mNameFolder})
                                 }
                                 startActivity(Intent(mContext, PlayVideoActivity::class.java).apply {
                                     putExtra(Constants.POS_VIDEO, position)

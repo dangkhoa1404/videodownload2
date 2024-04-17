@@ -47,6 +47,7 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun initData() {
+        mHomeVM.checkAllowVideoInProgress(true)
         if(permissionManager.isStorageGranted()) {
             Log.d("===>204924", "isStorageGranted: ")
             mHomeVM.checkAllowAudioPermission(true)

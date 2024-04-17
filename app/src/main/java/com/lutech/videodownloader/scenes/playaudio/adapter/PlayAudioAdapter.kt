@@ -12,6 +12,7 @@ import com.lutech.videodownloader.databinding.ItemFilePlayBinding
 import com.lutech.videodownloader.model.Audio
 import com.lutech.videodownloader.scenes.playaudio.activity.PlayAudioActivity
 import com.lutech.videodownloader.utils.Utils
+import com.lutech.videodownloader.utils.setColorForImageView
 import com.lutech.videodownloader.utils.setColorForTextView
 
 class PlayAudioAdapter(
@@ -50,6 +51,8 @@ class PlayAudioAdapter(
                 mPlayBinding.tvFileName.setColorForTextView(mContext, if(isCurrentSoundPlaying) R.color.color_item_primary else R.color.color_black)
 
                 mPlayBinding.tvMemoryFile.setColorForTextView(mContext, if(isCurrentSoundPlaying) R.color.color_item_primary else R.color.color_black)
+
+                mPlayBinding.ivListPlayChange.setColorForImageView(mContext, if(isCurrentSoundPlaying) R.color.color_item_primary else R.color.color_black)
 
                 mPlayBinding.vCurrentAudioPlay.isVisible = isCurrentSoundPlaying
 
