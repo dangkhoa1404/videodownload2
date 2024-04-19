@@ -279,5 +279,24 @@
     <string name="txt_close_parenthesis" translatable="false">)</string>
     <string name="txt_featured">Featured</string>
     <string name="txt_download_videos_from_multiple_online_platforms_with_case">Download videos from multiple online platforms with case</string>
+    <string name="txt_let_s_download_video">Let\'s Download video:</string>
+    <string name="txt_something_went_wrong">Something went wrong\n Please try again</string>
+    <string name="txt_details">Details</string>
+    <string name="txt_convert_to_audio">Convert to Audio</string>
+    <string name="txt_file_info">File Info</string>
+    <string name="txt_file_name">File Name</string>
+    <string name="txt_location">Location</string>
+    <string name="txt_file_size">File Size</string>
+    <string name="txt_date">Date</string>
+    <string name="txt_duration">Duration</string>
+
+    <string name="txt_are_you_sure_you_want_to_delete_it">Are you sure you want to delete it?</string>
+    <string name="txt_cancel_new">Cancel</string>
+    <string name="txt_format">Format</string>
+    <string name="txt_resolution">Resolution</string>
+    <string name="txt_coming_soon">Coming Soon…</string>
+    <string name="txt_video_is_downloading">Video is Downloading</string>
+    <string name="txt_downloading_complete">Downloading Complete</string>
+    <string name="txt_your_video_downloading_is_completed_go_to_downloads_and_watch_the_video">Your video downloading is completed. Go to downloads and watch the video</string>
 
 </resources>

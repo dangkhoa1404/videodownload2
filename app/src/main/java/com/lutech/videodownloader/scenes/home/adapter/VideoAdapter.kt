@@ -1,14 +1,22 @@
 package com.lutech.videodownloader.scenes.home.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.view.menu.MenuBuilder
+import androidx.appcompat.view.menu.MenuPopupHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lutech.videodownloader.R
 import com.lutech.videodownloader.databinding.ItemFileInDeviceBinding
 import com.lutech.videodownloader.databinding.ItemFileInDeviceType2Binding
 import com.lutech.videodownloader.model.Video
+import com.lutech.videodownloader.utils.Utils
 
 class VideoAdapter(
     var mContext: Context,
@@ -56,11 +64,19 @@ class VideoAdapter(
                         viewType1.tvDurationOfFile.text = this.durationOfVideo
 
                         viewType1.layoutItemVideo.setOnClickListener {
-                            onItemVideoListener.onItemVideoClick(position)
+                            if (!Utils.isClickRecently(1000)) {
+                                onItemVideoListener.onItemVideoClick(position)
+                            } else {
+                                Toast.makeText(mContext, mContext.getString(R.string.txt_please_wait), Toast.LENGTH_SHORT).show()
+                            }
                         }
 
-                        viewType1.ivOption.setOnClickListener {
-                            onItemVideoListener.onItemPosClick(position)
+                        viewType1.ivOption.setOnClickListener { view: View ->
+                            if (!Utils.isClickRecently(1000)) {
+                                setUpPopupHelper(position, view)
+                            } else {
+                                Toast.makeText(mContext, mContext.getString(R.string.txt_please_wait), Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }
@@ -82,16 +98,64 @@ class VideoAdapter(
                         viewType2.tvDurationOfFile.text = this.durationOfVideo
 
                         viewType2.layoutItemVideo.setOnClickListener {
-                            onItemVideoListener.onItemVideoClick(position)
+                            if (!Utils.isClickRecently(1000)) {
+                                onItemVideoListener.onItemVideoClick(position)
+                            } else {
+                                Toast.makeText(mContext, mContext.getString(R.string.txt_please_wait), Toast.LENGTH_SHORT).show()
+                            }
                         }
 
-                        viewType2.ivOption.setOnClickListener {
-                            onItemVideoListener.onItemPosClick(position)
+                        viewType2.ivOption.setOnClickListener { view: View ->
+                            if (!Utils.isClickRecently(1000)) {
+                                setUpPopupHelper(position, view)
+                            } else {
+                                Toast.makeText(mContext, mContext.getString(R.string.txt_please_wait), Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun setUpPopupHelper(currentPos: Int, view : View) {
+        val menuBuilder = MenuBuilder(mContext)
+        val inflater = MenuInflater(mContext)
+        inflater.inflate(R.menu.menu_video, menuBuilder)
+
+        val mPopupHelper = MenuPopupHelper(mContext, menuBuilder, view)
+
+        menuBuilder.setCallback(object : MenuBuilder.Callback {
+            override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
+                return when (item.itemId) {
+                    R.id.mn_video_share -> {
+                        onItemVideoListener.onItemPosClick(currentPos, 1)
+                        true
+                    }
+
+                    R.id.mn_video_delete -> {
+                        onItemVideoListener.onItemPosClick(currentPos, 2)
+                        true
+                    }
+
+                    R.id.mn_video_details -> {
+                        onItemVideoListener.onItemPosClick(currentPos, 3)
+                        true
+                    }
+
+                    R.id.mn_video_convert_to_audio -> {
+                        onItemVideoListener.onItemPosClick(currentPos, 4)
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+
+            override fun onMenuModeChange(menu: MenuBuilder) {}
+        })
+        mPopupHelper.show()
     }
 
     inner class VideoViewType1ViewHolder private constructor(
@@ -120,6 +184,6 @@ class VideoAdapter(
     }
     interface OnItemVideoListener {
         fun onItemVideoClick(position: Int)
-        fun onItemPosClick(position: Int)
+        fun onItemPosClick(position: Int, type : Int)
     }
 }

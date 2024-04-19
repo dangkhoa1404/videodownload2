@@ -1,12 +1,22 @@
 package com.lutech.videodownloader.scenes.home.fragment
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.media.MediaScannerConnection
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,8 +25,12 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.color.MaterialColors
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.lutech.videodownloader.R
 import com.lutech.videodownloader.database.ListAudio
+import com.lutech.videodownloader.databinding.DialogDeleteItemBinding
+import com.lutech.videodownloader.databinding.DialogDetailsFileBinding
 import com.lutech.videodownloader.databinding.DialogListFolderBinding
 import com.lutech.videodownloader.databinding.FragmentMusicBinding
 import com.lutech.videodownloader.model.Audio
@@ -184,8 +198,32 @@ class MusicFragment : Fragment() {
                                         })
                                     }
                                 }
-                                override fun onItemPosClick(position: Int) {
-
+                                override fun onItemPosClick(position: Int, type : Int) {
+                                    when(type) {
+                                        1 -> {
+                                            Utils.shareSingleFile(
+                                                (if (mNameFolder == Constants.ALL_FILE)
+                                                    mListAudio
+                                                else
+                                                    mListAudio.filter { it.parentOfAudio == mNameFolder})[position].pathOfAudio,
+                                                mContext!!)
+                                        }
+                                        2 -> {
+                                            setUpDeleteAudioDialog(
+                                                (if (mNameFolder == Constants.ALL_FILE)
+                                                    mListAudio
+                                                else
+                                                    mListAudio.filter { it.parentOfAudio == mNameFolder})[position].pathOfAudio,
+                                                position)
+                                        }
+                                        3 -> {
+                                            setUpDetailsAudioDialog(
+                                                (if (mNameFolder == Constants.ALL_FILE)
+                                                    mListAudio
+                                                else
+                                                    mListAudio.filter { it.parentOfAudio == mNameFolder})[position])
+                                        }
+                                    }
                                 }
                             })
                 }
@@ -201,6 +239,53 @@ class MusicFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setUpDeleteAudioDialog(pathAudio : String, position: Int) {
+        val mDetailsAudioBinding = DialogDeleteItemBinding.inflate(layoutInflater)
+
+        val mDialogDeletesAudio = Dialog(mContext!!)
+
+        mDialogDeletesAudio.apply {
+            setContentView(mDetailsAudioBinding.root)
+            setCanceledOnTouchOutside(false)
+            window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        }
+
+        mDetailsAudioBinding.apply {
+            tvCancel.setOnClickListener {
+                mDialogDeletesAudio.dismiss()
+            }
+
+            tvDelete.setOnClickListener {
+
+            }
+        }
+
+        mDialogDeletesAudio.show()
+    }
+
+    private fun setUpDetailsAudioDialog(currentAudio: Audio) {
+        val mDetailsAudioBinding = DialogDetailsFileBinding.inflate(layoutInflater)
+
+        val mDialogDetailsAudio = BottomSheetDialog(mContext!!, R.style.BottomSheetDialogTheme)
+
+        mDialogDetailsAudio.setContentView(mDetailsAudioBinding.root)
+
+        mDetailsAudioBinding.apply {
+            gone(cl7)
+            currentAudio.let {
+                tvNameAudio.text = it.nameOfAudio
+                tvLocationAudio.text = it.pathOfAudio
+                tvSizeAudio.text = it.memoryOfAudio
+                tvDateAddedAudio.text = it.dateAddedAudio
+                tvFormatAudio.text = it.pathOfAudio.substringAfterLast(".")
+                tvDurationAudio.text = it.durationOfAudio
+            }
+        }
+
+        mDialogDetailsAudio.show()
     }
 
     private fun setViewListFolderAudioDialog(mListFolderAudio : List<Folder>) {
@@ -255,7 +340,3 @@ class MusicFragment : Fragment() {
         super.onDestroy()
     }
 }
-
-//                behavior.state = BottomSheetBehavior.STATE_EXPANDED
-//                behavior.maxHeight = resources.displayMetrics.heightPixels / 2
-//                behavior.peekHeight = resources.displayMetrics.heightPixels / 2

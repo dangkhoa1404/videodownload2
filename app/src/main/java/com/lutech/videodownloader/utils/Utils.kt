@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lutech.videodownloader.R
@@ -252,12 +253,16 @@ object Utils {
     }
 
     fun shareLocalVideo(path: String, context: Context) {
-        val sendIntent =  Intent(Intent.ACTION_SEND).apply {
-            putExtra(Intent.EXTRA_TEXT, path)
-            type = "*/*"
+        try {
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name))
+            val shareMessage = "${context.getString(R.string.txt_let_s_download_video)}\n$path"
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+            context.startActivity(Intent.createChooser(shareIntent, "choose one"))
+        } catch (e: Exception) {
+            Toast.makeText(context, context.getString(R.string.txt_something_went_wrong), Toast.LENGTH_SHORT).show()
         }
-        val shareIntent = Intent.createChooser(sendIntent, "Share Video")
-        context.startActivity(shareIntent)
     }
 
     private var mLastClickTime: Long = 0L

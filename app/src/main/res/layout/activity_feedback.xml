@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scenes.setting.SettingsActivity">
+    tools:context=".scenes.feedback.activity.FeedbackActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,7 +14,6 @@
             android:layout_width="0dp"
             android:layout_height="?actionBarSize"
             android:background="@color/white"
-            android:elevation="@dimen/_3sdp"
             android:paddingHorizontal="@dimen/_8sdp"
             android:paddingVertical="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +44,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/font_rubik_regular"
                 android:lines="1"
-                android:text="@string/txt_settings"
+                android:text="@string/feedback"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_17ssp"
                 android:textStyle="bold"

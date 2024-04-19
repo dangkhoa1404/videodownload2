@@ -16,7 +16,7 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+<!--    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />-->
 
     <application
         android:name=".App"
@@ -29,6 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VideoDownloader"
         tools:replace="android:theme">
+        <activity
+            android:name=".scenes.feedback.activity.FeedbackActivity"
+            android:exported="false" />
         <activity
             android:name=".scenes.watchvideo.activity.WatchVideoActivity"
             android:exported="false" />
@@ -51,25 +54,20 @@
         <activity
             android:name=".scenes.intro.activity.IntroActivity"
             android:exported="true" />
-        <activity
-            android:name=".scenes.PlayVideoActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="true" />
+
         <activity
             android:name=".scenes.language.activity.LanguageActivity"
             android:exported="false" />
-        <activity
-            android:name=".scenes.WatchVideoActivity"
-            android:configChanges="orientation|screenSize|screenLayout"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+
         <activity
             android:name=".scenes.setting.SettingActivity"
             android:exported="false" />
+
         <activity
             android:name=".scenes.home.activity.HomeActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".scenes.splash.SplashActivity"
             android:exported="true">

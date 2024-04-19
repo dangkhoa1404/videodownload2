@@ -26,6 +26,10 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun handleEvent() {
-
+        mSettingsBinding.apply {
+            imgBack.setOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
     }
 }

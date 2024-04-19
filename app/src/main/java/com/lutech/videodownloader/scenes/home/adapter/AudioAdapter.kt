@@ -1,21 +1,29 @@
 package com.lutech.videodownloader.scenes.home.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.view.menu.MenuBuilder
+import androidx.appcompat.view.menu.MenuPopupHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lutech.videodownloader.R
 import com.lutech.videodownloader.databinding.ItemFileInDeviceBinding
 import com.lutech.videodownloader.databinding.ItemFileInDeviceType2Binding
 import com.lutech.videodownloader.model.Audio
+import com.lutech.videodownloader.utils.Utils
 import com.lutech.videodownloader.utils.gone
 
 class AudioAdapter(
     var mContext: Context,
     val isTypeViewMusic1 : Int,
     var listMusic: List<Audio>,
-    var onItemVideoListener: OnItemMusicListener
+    var onItemAudioListener: OnItemMusicListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val LIST_MUSIC_TYPE_1 = 1
@@ -58,11 +66,19 @@ class AudioAdapter(
                         viewType1.tvDurationOfFile.text = this.durationOfAudio
 
                         viewType1.layoutItemVideo.setOnClickListener {
-                            onItemVideoListener.onItemMusicClick(position)
+                            if (!Utils.isClickRecently(1000)) {
+                                onItemAudioListener.onItemMusicClick(position)
+                            } else {
+                                Toast.makeText(mContext, mContext.getString(R.string.txt_please_wait), Toast.LENGTH_SHORT).show()
+                            }
                         }
 
-                        viewType1.ivOption.setOnClickListener {
-                            onItemVideoListener.onItemPosClick(position)
+                        viewType1.ivOption.setOnClickListener { view: View ->
+                            if (!Utils.isClickRecently(1000)) {
+                                setUpPopupHelper(position, view)
+                            } else {
+                                Toast.makeText(mContext, mContext.getString(R.string.txt_please_wait), Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }
@@ -85,16 +101,59 @@ class AudioAdapter(
                         viewType2.tvDurationOfFile.text = this.durationOfAudio
 
                         viewType2.layoutItemVideo.setOnClickListener {
-                            onItemVideoListener.onItemMusicClick(position)
+                            if (!Utils.isClickRecently(1000)) {
+                                onItemAudioListener.onItemMusicClick(position)
+                            } else {
+                                Toast.makeText(mContext, mContext.getString(R.string.txt_please_wait), Toast.LENGTH_SHORT).show()
+                            }
                         }
 
-                        viewType2.ivOption.setOnClickListener {
-                            onItemVideoListener.onItemPosClick(position)
+                        viewType2.ivOption.setOnClickListener { view: View ->
+                            if (!Utils.isClickRecently(1000)) {
+                                setUpPopupHelper(position, view)
+                            } else {
+                                Toast.makeText(mContext, mContext.getString(R.string.txt_please_wait), Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun setUpPopupHelper(currentPos: Int, view : View) {
+        val menuBuilder = MenuBuilder(mContext)
+        val inflater = MenuInflater(mContext)
+        inflater.inflate(R.menu.menu_audio, menuBuilder)
+
+        val mPopupHelper = MenuPopupHelper(mContext, menuBuilder, view)
+
+        menuBuilder.setCallback(object : MenuBuilder.Callback {
+            override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
+                return when (item.itemId) {
+                    R.id.mn_audio_share -> {
+                        onItemAudioListener.onItemPosClick(currentPos, 1)
+                        true
+                    }
+
+                    R.id.mn_audio_delete -> {
+                        onItemAudioListener.onItemPosClick(currentPos, 2)
+                        true
+                    }
+
+                    R.id.mn_audio_details -> {
+                        onItemAudioListener.onItemPosClick(currentPos, 3)
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+
+            override fun onMenuModeChange(menu: MenuBuilder) {}
+        })
+        mPopupHelper.show()
     }
 
     inner class MusicViewType1ViewHolder private constructor(
@@ -124,6 +183,6 @@ class AudioAdapter(
 
     interface OnItemMusicListener {
         fun onItemMusicClick(position: Int)
-        fun onItemPosClick(position: Int)
+        fun onItemPosClick(position: Int, type : Int)
     }
 }

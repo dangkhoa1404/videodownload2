@@ -1,11 +1,16 @@
 package com.lutech.videodownloader.scenes.home.fragment
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,6 +21,8 @@ import com.google.android.flexbox.JustifyContent
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lutech.videodownloader.R
 import com.lutech.videodownloader.database.ListVideo
+import com.lutech.videodownloader.databinding.DialogDeleteItemBinding
+import com.lutech.videodownloader.databinding.DialogDetailsFileBinding
 import com.lutech.videodownloader.databinding.DialogListFolderBinding
 import com.lutech.videodownloader.databinding.FragmentVideoBinding
 import com.lutech.videodownloader.model.Folder
@@ -36,12 +43,14 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
+import android.media.MediaMetadataRetriever
+import android.util.Log
 
 class VideoFragment : Fragment() {
 
-    private var mContext : Context? = null
+    private var mContext: Context? = null
 
-    private lateinit var mVideoBinding : FragmentVideoBinding
+    private lateinit var mVideoBinding: FragmentVideoBinding
 
     private lateinit var mHomeVM: HomeViewModel
 
@@ -49,15 +58,15 @@ class VideoFragment : Fragment() {
 
     private var mListVideo: MutableList<Video> = mutableListOf()
 
-    private var mIsListAllVideo : Boolean = true
+    private var mIsListAllVideo: Boolean = true
 
-    private var mListFolderVideoDialog : BottomSheetDialog? = null
+    private var mListFolderVideoDialog: BottomSheetDialog? = null
 
-    private var mFolderAdapter : FolderAdapter? = null
+    private var mFolderAdapter: FolderAdapter? = null
 
-    private var mVideoAdapter : VideoAdapter? = null
+    private var mVideoAdapter: VideoAdapter? = null
 
-    private var mNameFolder : String = Constants.ALL_FILE
+    private var mNameFolder: String = Constants.ALL_FILE
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,7 +98,7 @@ class VideoFragment : Fragment() {
 
     private fun handleEvent() {
         mVideoBinding.llListFolder.setOnClickListener {
-            if(mListFolderVideoDialog != null) {
+            if (mListFolderVideoDialog != null) {
                 mListFolderVideoDialog!!.show()
             }
         }
@@ -99,7 +108,7 @@ class VideoFragment : Fragment() {
                 gone(mVideoBinding.clFilter)
                 withContext(Dispatchers.IO) {
                     mNameFolder = Constants.ALL_FILE
-                    if(mFolderAdapter!!.mPosCheckCurrentFolder != 0) {
+                    if (mFolderAdapter!!.mPosCheckCurrentFolder != 0) {
                         mVideoAdapter!!.filterListVideo(mListVideo)
                     }
                 }
@@ -126,12 +135,12 @@ class VideoFragment : Fragment() {
                 clear()
                 addAll(it)
 
-                if(mIsListAllVideo) {
+                if (mIsListAllVideo) {
                     mVideoBinding.tvAmountOfVideos.text = it.size.toString()
 
                     var totalMemory = 0L
 
-                    for(i in it.indices) {
+                    for (i in it.indices) {
                         totalMemory += File(it[i].pathOfVideo).length()
                     }
                     mVideoBinding.tvAmountOfMemory.text = Utils.formatSizeFile(totalMemory.toDouble())
@@ -156,14 +165,14 @@ class VideoFragment : Fragment() {
     }
 
     private fun setTypeViewOfRCV() {
-        mVideoBinding.rcvListVideos.layoutManager = if(mContext!!.sharedPreference.viewType == 1)
-            LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL ,false)
+        mVideoBinding.rcvListVideos.layoutManager = if (mContext!!.sharedPreference.viewType == 1)
+            LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         else
             GridLayoutManager(mContext, 2)
     }
 
     private fun setListVideoView() {
-        if(mListVideo.isEmpty()) {
+        if (mListVideo.isEmpty()) {
             visible(mVideoBinding.llVideoNotFound.root)
         } else {
             gone(mVideoBinding.llVideoNotFound.root)
@@ -177,18 +186,50 @@ class VideoFragment : Fragment() {
                         override fun onItemVideoClick(position: Int) {
                             lifecycleScope.launch(Dispatchers.Main) {
                                 withContext(Dispatchers.IO) {
-                                    if(ListVideo.mListVideo.isNotEmpty()) {
+                                    if (ListVideo.mListVideo.isNotEmpty()) {
                                         ListVideo.mListVideo.clear()
                                     }
                                     ListVideo.mListVideo.addAll(if (mNameFolder == Constants.ALL_FILE) mListVideo else mListVideo.filter { it.parentoOfVideo == mNameFolder})
                                 }
-                                startActivity(Intent(mContext, PlayVideoActivity::class.java).apply {
-                                    putExtra(Constants.POS_VIDEO, position)
-                                })
+                                startActivity(
+                                    Intent(mContext, PlayVideoActivity::class.java).apply {
+                                        putExtra(Constants.POS_VIDEO, position)
+                                    })
                             }
                         }
-                        override fun onItemPosClick(position: Int) {
 
+                        override fun onItemPosClick(position: Int, type: Int) {
+                            when (type) {
+                                1 -> {
+                                    Utils.shareSingleFile(
+                                        (if (mNameFolder == Constants.ALL_FILE)
+                                            mListVideo
+                                        else
+                                            mListVideo.filter { it.parentoOfVideo == mNameFolder})[position].pathOfVideo,
+                                        mContext!!)
+                                }
+
+                                2 -> {
+                                    setUpDeleteAudioDialog(
+                                        (if (mNameFolder == Constants.ALL_FILE)
+                                            mListVideo
+                                        else
+                                            mListVideo.filter { it.parentoOfVideo == mNameFolder})[position].pathOfVideo,
+                                        position)
+                                }
+
+                                3 -> {
+                                    setUpDetailsAudioDialog(
+                                        (if (mNameFolder == Constants.ALL_FILE)
+                                            mListVideo
+                                        else
+                                            mListVideo.filter { it.parentoOfVideo == mNameFolder})[position])
+                                }
+
+                                4 -> {
+                                    Toast.makeText(mContext, mContext!!.getString(R.string.txt_coming_soon), Toast.LENGTH_SHORT).show()
+                                }
+                            }
                         }
                     })
 
@@ -196,7 +237,67 @@ class VideoFragment : Fragment() {
         }
     }
 
-    private fun setViewListFolderVideoDialog(mListFolderVideo : List<Folder>) {
+    private fun setUpDeleteAudioDialog(pathVideo: String, currentPos: Int) {
+        val mDetailsAudioBinding = DialogDeleteItemBinding.inflate(layoutInflater)
+
+        val mDialogDeletesAudio = Dialog(mContext!!)
+
+        mDialogDeletesAudio.apply {
+            setContentView(mDetailsAudioBinding.root)
+            setCanceledOnTouchOutside(false)
+            window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        }
+
+        mDetailsAudioBinding.apply {
+            tvCancel.setOnClickListener {
+                mDialogDeletesAudio.dismiss()
+            }
+
+            tvDelete.setOnClickListener {
+
+            }
+        }
+
+        mDialogDeletesAudio.show()
+    }
+
+    private fun setUpDetailsAudioDialog(infoVideo : Video) {
+        lifecycleScope.launch(Dispatchers.Main) {
+            val mDetailsAudioBinding = DialogDetailsFileBinding.inflate(layoutInflater)
+
+            val mDialogDetailsAudio = BottomSheetDialog(mContext!!, R.style.BottomSheetDialogTheme)
+
+            mDialogDetailsAudio.setContentView(mDetailsAudioBinding.root)
+
+            var heightVideo: Int
+
+            var widthVideo: Int
+
+            withContext(Dispatchers.IO) {
+                val mdr = MediaMetadataRetriever()
+                mdr.setDataSource(infoVideo.pathOfVideo)
+                heightVideo = mdr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)!!.toInt()
+                widthVideo = mdr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)!!.toInt()
+            }
+
+            mDetailsAudioBinding.apply {
+                infoVideo.let {
+                    tvNameAudio.text = it.nameOfVideo
+                    tvLocationAudio.text = it.pathOfVideo
+                    tvSizeAudio.text = it.memoryOfVideo
+                    tvDateAddedAudio.text = it.dateAddedVideo
+                    tvFormatAudio.text = it.pathOfVideo.substringAfterLast(".")
+                    tvResolution.text = "$widthVideo x $heightVideo"
+                    tvDurationAudio.text = it.durationOfVideo
+                }
+            }
+
+            mDialogDetailsAudio.show()
+        }
+    }
+
+    private fun setViewListFolderVideoDialog(mListFolderVideo: List<Folder>) {
         lifecycleScope.launch(Dispatchers.Main) {
             val mDialogFolderBinding = DialogListFolderBinding.inflate(layoutInflater)
 
@@ -205,32 +306,37 @@ class VideoFragment : Fragment() {
             mListFolderVideoDialog!!.setContentView(mDialogFolderBinding.root)
 
             withContext(Dispatchers.IO) {
-                mFolderAdapter = FolderAdapter(mContext!!, mListFolderVideo, object : FolderAdapter.OnItemFolderListener {
-                    override fun onItemFolderClick(position: Int) {
+                mFolderAdapter = FolderAdapter(
+                    mContext!!,
+                    mListFolderVideo,
+                    object : FolderAdapter.OnItemFolderListener {
+                        override fun onItemFolderClick(position: Int) {
 
-                        val mOldPos = mFolderAdapter!!.mPosCheckCurrentFolder
+                            val mOldPos = mFolderAdapter!!.mPosCheckCurrentFolder
 
-                        mFolderAdapter!!.mPosCheckCurrentFolder = position
+                            mFolderAdapter!!.mPosCheckCurrentFolder = position
 
-                        if(mOldPos != mFolderAdapter!!.mPosCheckCurrentFolder) {
-                            mFolderAdapter!!.notifyItemChanged(mOldPos)
-                            mFolderAdapter!!.notifyItemChanged(mFolderAdapter!!.mPosCheckCurrentFolder)
+                            if (mOldPos != mFolderAdapter!!.mPosCheckCurrentFolder) {
+                                mFolderAdapter!!.notifyItemChanged(mOldPos)
+                                mFolderAdapter!!.notifyItemChanged(mFolderAdapter!!.mPosCheckCurrentFolder)
 
-                            if(mFolderAdapter!!.mPosCheckCurrentFolder == 0) {
-                                gone(mVideoBinding.clFilter)
-                                mNameFolder = Constants.ALL_FILE
-                                mVideoAdapter!!.filterListVideo(mListVideo)
-                            } else {
-                                mVideoBinding.tvNameFolder.text = mListFolderVideo[mFolderAdapter!!.mPosCheckCurrentFolder].folderName
-                                visible(mVideoBinding.clFilter)
-                                mNameFolder = mListFolderVideo[mFolderAdapter!!.mPosCheckCurrentFolder].folderName
-                                mVideoAdapter!!.filterListVideo(mListVideo.filter { it.parentoOfVideo ==  mListFolderVideo[mFolderAdapter!!.mPosCheckCurrentFolder].folderName})
+                                if (mFolderAdapter!!.mPosCheckCurrentFolder == 0) {
+                                    gone(mVideoBinding.clFilter)
+                                    mNameFolder = Constants.ALL_FILE
+                                    mVideoAdapter!!.filterListVideo(mListVideo)
+                                } else {
+                                    mVideoBinding.tvNameFolder.text =
+                                        mListFolderVideo[mFolderAdapter!!.mPosCheckCurrentFolder].folderName
+                                    visible(mVideoBinding.clFilter)
+                                    mNameFolder =
+                                        mListFolderVideo[mFolderAdapter!!.mPosCheckCurrentFolder].folderName
+                                    mVideoAdapter!!.filterListVideo(mListVideo.filter { it.parentoOfVideo == mListFolderVideo[mFolderAdapter!!.mPosCheckCurrentFolder].folderName })
+                                }
                             }
-                        }
 
-                        mListFolderVideoDialog!!.dismiss()
-                    }
-                })
+                            mListFolderVideoDialog!!.dismiss()
+                        }
+                    })
             }
             mDialogFolderBinding.rcvListFolder.apply {
                 layoutManager = FlexboxLayoutManager(mContext).apply {

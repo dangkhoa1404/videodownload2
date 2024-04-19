@@ -252,17 +252,31 @@
                 app:tint="@color/color_white" />
 
             <TextView
-                android:id="@+id/tvSpeedAudio"
+                android:id="@+id/tvSpeedVideo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_rubik_medium"
                 android:text="@string/txt_default_speed_audio"
                 android:textColor="@color/color_item_primary"
                 android:textSize="@dimen/_15ssp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imgNext"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgRotateVideo"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/bg_event_click_item"
+                android:padding="@dimen/_8sdp"
+                android:src="@drawable/ic_rotate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgNext"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/color_white" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

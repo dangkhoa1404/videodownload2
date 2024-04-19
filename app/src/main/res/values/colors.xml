@@ -108,4 +108,6 @@
 
     <color name="color_bg_item_in_progress">#818183</color>
 
+    <color name="color_text_download">#636363</color>
+
 </resources>

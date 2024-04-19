@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mn_video_share"
+        android:title="@string/txt_share" />
+
+    <item
+        android:id="@+id/mn_video_delete"
+        android:title="@string/delete" />
+
+    <item
+        android:id="@+id/mn_video_details"
+        android:title="@string/txt_details" />
+
+    <item
+        android:id="@+id/mn_video_convert_to_audio"
+        android:title="@string/txt_convert_to_audio" />
+
+</menu>

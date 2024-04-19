@@ -175,9 +175,9 @@ class PlayVideoActivity : BaseVideoActivity() {
                 mDialogListVideoPlay!!.show()
             }
 
-            //fullscreenButton.setOnClickListener {
-//            toggleFullscreen()
-//        }
+            imgRotateVideo.setOnClickListener {
+                toggleFullscreen()
+            }
 
             imgNext.setOnClickListener {
                 if (!Utils.isClickRecently(1000)) {
@@ -234,6 +234,10 @@ class PlayVideoActivity : BaseVideoActivity() {
                 player?.volume = 1F
                 visible(imgMuteVideo)
                 invisible(imgUnmuteVideo)
+            }
+
+            imgMoreFeatureVideo.setOnClickListener {
+                Toast.makeText(this@PlayVideoActivity, getString(R.string.txt_coming_soon), Toast.LENGTH_SHORT).show()
             }
         }
     }
