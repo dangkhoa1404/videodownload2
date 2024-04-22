@@ -38,8 +38,12 @@ object Constants {
 
     const val IS_SET_LANG = "isSetLang"
 
+    const val LANGUAGE_NAME: String = "LANGUAGE_NAME"
+
     //New App - Ver 1
     const val CODE_REQUEST_STORAGE = 100
+
+    const val CODE_REQUEST_NOTIFICATION = 101
 
     const val APP_NAME_NEW: String = "LuVideoDownloader"
 
@@ -68,4 +72,11 @@ object Constants {
     const val PATH_VIDEO_IN_PROGRESS: String = "PATH_VIDEO_IN_PROGRESS"
 
     const val NAME_VIDEO_IN_PROGRESS: String = "NAME_VIDEO_IN_PROGRESS"
+
+    const val COUNT_TIME_DENY_PER: String = "COUNT_TIME_DENY_PER"
+
+    const val COUNT_TIME_DENY_NOTIFY_PER: String = "COUNT_TIME_DENY_NOTIFY_PER"
+
+    const val PACKAGE = "package"
+
 }

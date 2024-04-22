@@ -5,23 +5,17 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.os.StatFs
+import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.URLUtil
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.lutech.videodownloader.BuildConfig
@@ -31,12 +25,14 @@ import com.lutech.videodownloader.scenes.home.activity.HomeActivity
 import com.lutech.videodownloader.utils.Constants
 import com.lutech.videodownloader.utils.Utils
 import com.lutech.videodownloader.utils.Utils.checkStatusInternet
-import com.lutech.videodownloader.utils.gone
-import com.lutech.videodownloader.utils.sharedPreference
-import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.lutech.videodownloader.databinding.DialogDownloadFileStateBinding
+import com.lutech.videodownloader.databinding.DialogDownloadingFileBinding
 import com.lutech.videodownloader.scenes.home.viewmodel.HomeViewModel
 import com.lutech.videodownloader.scenes.intro.activity.IntroActivity
 import com.lutech.videodownloader.scenes.setting.SettingsActivity
+import com.lutech.videodownloader.utils.permissionManager
+import com.lutech.videodownloader.utils.visible
 import com.yausername.youtubedl_android.YoutubeDL
 import com.yausername.youtubedl_android.YoutubeDLRequest
 import com.yausername.youtubedl_android.YoutubeDLResponse
@@ -45,7 +41,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.io.File
-
 
 class DownloadFragment : Fragment() {
 
@@ -57,15 +52,14 @@ class DownloadFragment : Fragment() {
 
     private lateinit var downloadBinding : FragmentAppBinding
 
-    private var isRunningVoice = false
-
     private val callback: (progress: Float, etaInSeconds: Long, line: String) -> Unit = { progress, etaInSeconds, line ->
         requireActivity().runOnUiThread {
             if(progress != -1F) {
                 Log.d("===>0249204", "yes: ")
+                mDialogDownloadVideoBinding.tvProgressDownload.text = "${progress}%"
                 (mContext as HomeActivity).createNotification(progress, line)
             } else {
-                Log.d("===>0249204", "no: ")
+                mDialogDownloadVideoBinding.tvProgressDownload.text = "0%"
             }
         }
     }
@@ -82,9 +76,17 @@ class DownloadFragment : Fragment() {
             return ""
         }
 
-    private var mPathURL: String = "https://www.google.com/"
+//    private var mPathURL: String = "https://www.google.com/"
 
     private lateinit var mDownloadVideoVM: HomeViewModel
+
+    private var mDialogDownloadVideo: BottomSheetDialog? = null
+
+    private var mDialogDownloadState: BottomSheetDialog? = null
+
+    private lateinit var mDialogDownloadVideoBinding : DialogDownloadingFileBinding
+
+    private lateinit var mDialogDownloadStateBinding : DialogDownloadFileStateBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -103,65 +105,53 @@ class DownloadFragment : Fragment() {
     }
 
     private fun initData() {
-
         (mContext as HomeActivity).mHomeVM.let {
             mDownloadVideoVM = it
         }
-
-//        downloadBinding.webView.apply {
-//            webViewClient = WebViewClient()
-//            apply {
-//                when {
-//                    URLUtil.isValidUrl(mPathURL) -> loadUrl(mPathURL)
-//                    mPathURL.contains(".com", ignoreCase = true) -> loadUrl(mPathURL)
-//                    else -> loadUrl("https://www.google.com/search?q=$mPathURL")
-//                }
-//            }
-//            webChromeClient = object : WebChromeClient() {
-//                override fun onReceivedIcon(view: WebView?, icon: Bitmap?) {
-//                    super.onReceivedIcon(view, icon)
-//                    try {
-//                        Glide.with(mContext!!).asBitmap().load(icon).into(downloadBinding.ivIconWebSite)
-//                    } catch (e: Exception) {
-//                        Glide.with(mContext!!).asBitmap().load(R.drawable.ic_bottom_nav_home).into(downloadBinding.ivIconWebSite)
-//                    }
-//                }
-//            }
-//        }
-
     }
 
     private fun initViews() {
-        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU)) {
-            if (!isStoragePermissionGranted()) {
-                Toast.makeText(mContext, "grant storage permission and retry", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(mContext, "grant storage permission success", Toast.LENGTH_LONG).show()
-            }
-        }
+        //dialog download video
+        mDialogDownloadVideoBinding = DialogDownloadingFileBinding.inflate(layoutInflater)
+
+        mDialogDownloadVideo = BottomSheetDialog(mContext!!, R.style.BottomSheetDialogTheme)
+
+        mDialogDownloadVideo!!.setContentView(mDialogDownloadVideoBinding.root)
+
+        //dialog download state
+        mDialogDownloadStateBinding = DialogDownloadFileStateBinding.inflate(layoutInflater)
+
+        mDialogDownloadState = BottomSheetDialog(mContext!!, R.style.BottomSheetDialogTheme)
+
+        mDialogDownloadState!!.setContentView(mDialogDownloadStateBinding.root)
     }
 
     private fun handleEvent() {
         downloadBinding.apply {
             btnDownload.setOnClickListener {
                 if (editTextLink.text.toString() != ""){
-                    if (checkStatusInternet(mContext!!) == 1) {
-                        startDownload()
-                    } else if (checkStatusInternet(mContext!!) == 2 && (Constants.isDownloadWithWIFIOnly == true)) {
-                        Log.d("btn_start_download", "day 1")
-                        Toast.makeText(mContext, getText(R.string.txt_please_turn_off_option_download_with_wifi_only), Toast.LENGTH_SHORT).show()
+                    if(!mContext!!.permissionManager.isStorageGranted()) {
+                        Toast.makeText(mContext, mContext!!.getString(R.string.txt_sorry_error_occured_please_try_again), Toast.LENGTH_SHORT).show()
+                    } else {
+                        if(!mContext!!.permissionManager.isNotificationStorageGranted()) {
+                            (mContext as HomeActivity).setDialogRequestNotificationPermission()
+                        }
 
-                    } else if (checkStatusInternet(mContext!!) == 2 && (Constants.isDownloadWithWIFIOnly == false)) {
-                        Log.d("btn_start_download", "day 2")
-                        startDownload()
-                    } else if (checkStatusInternet(mContext!!) == 0) {
-                    Toast.makeText(mContext, getText(R.string.txt_no_internet), Toast.LENGTH_SHORT).show()
+                        if (checkStatusInternet(mContext!!) == 1) {
+                            startDownload()
+                        } else if (checkStatusInternet(mContext!!) == 2 && Constants.isDownloadWithWIFIOnly) {
+                            Toast.makeText(mContext, getText(R.string.txt_please_turn_off_option_download_with_wifi_only), Toast.LENGTH_SHORT).show()
+
+                        } else if (checkStatusInternet(mContext!!) == 2 && !Constants.isDownloadWithWIFIOnly) {
+                            startDownload()
+                        } else if (checkStatusInternet(mContext!!) == 0) {
+                            Toast.makeText(mContext, getText(R.string.txt_no_internet), Toast.LENGTH_SHORT).show()
+                        }
 
                     }
                 }else {
                     editTextLink.error = getString(R.string.txt_enter_valid_url)
                 }
-
             }
 
             btnParse.setOnClickListener {
@@ -176,16 +166,6 @@ class DownloadFragment : Fragment() {
                 }
             }
 
-            (mContext as HomeActivity).onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if (webView.canGoBack()) {
-                        webView.goBack()
-                    } else {
-                        gone(frameLayoutWebsite)
-                    }
-                }
-            })
-
             clHowToDownload.setOnClickListener {
                 startActivity(Intent(mContext, IntroActivity::class.java).apply {
                     putExtra(Constants.IS_FROM_HOME_ACTIVITY, true)
@@ -195,6 +175,14 @@ class DownloadFragment : Fragment() {
             imgSetting.setOnClickListener {
                 startActivity(Intent(mContext, SettingsActivity::class.java))
             }
+        }
+
+        mDialogDownloadVideoBinding.ivClose.setOnClickListener {
+            mDialogDownloadVideo!!.dismiss()
+        }
+
+        mDialogDownloadStateBinding.ivClose.setOnClickListener {
+            mDialogDownloadState!!.dismiss()
         }
     }
 
@@ -217,6 +205,10 @@ class DownloadFragment : Fragment() {
             return
         }
 
+        Toast.makeText(mContext, mContext!!.getString(R.string.txt_downloading_started), Toast.LENGTH_SHORT).show()
+
+        mDialogDownloadVideo!!.show()
+
         val request = YoutubeDLRequest(url)
         val youtubeDLDir: File = Utils.getDownloadLocation()
         val config = File(youtubeDLDir, "config.txt")
@@ -238,7 +230,13 @@ class DownloadFragment : Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ _: YoutubeDLResponse ->
 
-                Log.d("===>0248294", "download = success")
+                mDialogDownloadVideo!!.dismiss()
+                mDialogDownloadVideoBinding.tvProgressDownload.text = "0%"
+
+                visible(mDialogDownloadStateBinding.lottieViewLoading)
+                mDialogDownloadStateBinding.tvTitleDownloadState.text = mContext!!.getString(R.string.download_complete)
+                mDialogDownloadStateBinding.tvDesDownloadState.text = mContext!!.getString(R.string.txt_your_video_downloading_is_completed_go_to_downloads_and_watch_the_video)
+                mDialogDownloadState!!.show()
 
                 downloading = false
 
@@ -253,7 +251,13 @@ class DownloadFragment : Fragment() {
                     "===>09092402", java.lang.String.valueOf(R.string.txt_fail_to_download), e
                 )
 
-                Log.d("===>0248294", "download = fail")
+                mDialogDownloadVideo!!.dismiss()
+                mDialogDownloadVideoBinding.tvProgressDownload.text = "0%"
+
+                visible(mDialogDownloadStateBinding.imgDownloadFail)
+                mDialogDownloadStateBinding.tvTitleDownloadState.text = mContext!!.getString(R.string.download_failed)
+                mDialogDownloadStateBinding.tvDesDownloadState.text = mContext!!.getString(R.string.txt_your_video_downloading_is_failed)
+                mDialogDownloadState!!.show()
 
                 downloading = false
 
@@ -262,29 +266,6 @@ class DownloadFragment : Fragment() {
                 (mContext as HomeActivity).setSuccessDownloadNotification(getString(R.string.download_failed))
             }
         compositeDisposable.add(disposable)
-    }
-
-    private fun memoryStorageOfDevice() {
-        // Fetching internal memory information
-        val iPath: File = Environment.getDataDirectory()
-
-        val iStat = StatFs(iPath.path)
-
-        val iBlockSize = iStat.blockSizeLong
-
-        val iAvailableBlocks = iStat.availableBlocksLong
-
-        val iTotalBlocks = iStat.blockCountLong
-
-        val iUsedBlocks = (iTotalBlocks - iAvailableBlocks)
-
-        val iAvailableSpace = Utils.formatSizeOfMemory(iAvailableBlocks * iBlockSize)
-        val iUsedSpace = Utils.formatSizeOfMemory(iUsedBlocks * iBlockSize)
-        val iTotalSpace = Utils.formatSizeOfMemory(iTotalBlocks * iBlockSize)
-
-        Log.d("===>0248294", "iAvailableSpace: " + iAvailableSpace)
-        Log.d("===>0248294", "iUsedSpace: " + iUsedSpace)
-        Log.d("===>0248294", "iTotalSpace: " + iTotalSpace)
     }
 
     private fun isStoragePermissionGranted(): Boolean {
@@ -305,3 +286,59 @@ class DownloadFragment : Fragment() {
         super.onDestroy()
     }
 }
+
+//        downloadBinding.webView.apply {
+//            webViewClient = WebViewClient()
+//            apply {
+//                when {
+//                    URLUtil.isValidUrl(mPathURL) -> loadUrl(mPathURL)
+//                    mPathURL.contains(".com", ignoreCase = true) -> loadUrl(mPathURL)
+//                    else -> loadUrl("https://www.google.com/search?q=$mPathURL")
+//                }
+//            }
+//            webChromeClient = object : WebChromeClient() {
+//                override fun onReceivedIcon(view: WebView?, icon: Bitmap?) {
+//                    super.onReceivedIcon(view, icon)
+//                    try {
+//                        Glide.with(mContext!!).asBitmap().load(icon).into(downloadBinding.ivIconWebSite)
+//                    } catch (e: Exception) {
+//                        Glide.with(mContext!!).asBitmap().load(R.drawable.ic_bottom_nav_home).into(downloadBinding.ivIconWebSite)
+//                    }
+//                }
+//            }
+//        }
+
+
+//            (mContext as HomeActivity).onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+//                override fun handleOnBackPressed() {
+//                    if (webView.canGoBack()) {
+//                        webView.goBack()
+//                    } else {
+//                        gone(frameLayoutWebsite)
+//                    }
+//                }
+//            })
+
+
+//private fun memoryStorageOfDevice() {
+//    // Fetching internal memory information
+//    val iPath: File = Environment.getDataDirectory()
+//
+//    val iStat = StatFs(iPath.path)
+//
+//    val iBlockSize = iStat.blockSizeLong
+//
+//    val iAvailableBlocks = iStat.availableBlocksLong
+//
+//    val iTotalBlocks = iStat.blockCountLong
+//
+//    val iUsedBlocks = (iTotalBlocks - iAvailableBlocks)
+//
+//    val iAvailableSpace = Utils.formatSizeOfMemory(iAvailableBlocks * iBlockSize)
+//    val iUsedSpace = Utils.formatSizeOfMemory(iUsedBlocks * iBlockSize)
+//    val iTotalSpace = Utils.formatSizeOfMemory(iTotalBlocks * iBlockSize)
+//
+//    Log.d("===>0248294", "iAvailableSpace: " + iAvailableSpace)
+//    Log.d("===>0248294", "iUsedSpace: " + iUsedSpace)
+//    Log.d("===>0248294", "iTotalSpace: " + iTotalSpace)
+//}

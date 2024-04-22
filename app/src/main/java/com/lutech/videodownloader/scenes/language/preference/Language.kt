@@ -56,4 +56,14 @@ class Language(context: Context) {
         set(flagByCountry) = sharedPreferencesLanguage.edit {
             putInt(Constants.FLAG_BY_COUNTRY, flagByCountry)
         }
+
+    fun setLanguageName(languageName: String) {
+        val editor = sharedPreferencesLanguage.edit()
+        editor.putString(Constants.LANGUAGE_NAME, languageName)
+        editor.apply()
+    }
+
+    fun getLanguageName(context: Context): String {
+        return sharedPreferencesLanguage.getString(Constants.LANGUAGE_NAME, context.getString(R.string.english)).toString()
+    }
 }

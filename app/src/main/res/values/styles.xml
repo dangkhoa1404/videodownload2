@@ -120,4 +120,41 @@
         <item name="android:fontFamily">@font/font_rubik_regular</item>
     </style>
 
+<!--    Layout Setting-->
+    <style name="Title_Header_Setting">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/_15sdp</item>
+        <item name="android:fontFamily">@font/font_rubik_medium</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:layout_marginTop">@dimen/_10sdp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
+    </style>
+
+    <style name="Stroke_Setting">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/color_text_of_item_file</item>
+    </style>
+
+    <style name="Setting_Layout_Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/_5sdp</item>
+        <item name="android:background">@drawable/bg_event_click_item_full</item>
+    </style>
+
+    <style name="Setting_Image_Item">
+        <item name="android:layout_width">@dimen/_16sdp</item>
+        <item name="android:layout_height">@dimen/_16sdp</item>
+    </style>
+
+    <style name="Setting_Text_Item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/font_rubik_regular</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
 </resources>

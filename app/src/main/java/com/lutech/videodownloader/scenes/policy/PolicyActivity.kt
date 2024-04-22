@@ -24,7 +24,8 @@ class PolicyActivity : BaseActivity() {
 
     private fun initView() {
         mPolicyBinding.webView.apply {
-            loadUrl("https://viblo.asia/p/tim-hieu-ve-webview-trong-android-Ljy5VPqzZra")
+//            loadUrl("https://viblo.asia/p/tim-hieu-ve-webview-trong-android-Ljy5VPqzZra")
+            loadUrl("https://www.google.com/")
             settings.javaScriptEnabled = true
             webViewClient = WebViewClient()
         }

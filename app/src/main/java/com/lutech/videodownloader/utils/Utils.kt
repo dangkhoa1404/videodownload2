@@ -26,106 +26,106 @@ import kotlin.math.roundToInt
 
 object Utils {
 
-    fun onCreateDialog(
-        context: Context,
-        layout: Int,
-        isCanceledOnTouchOutside: Boolean = false
-    ): Dialog {
-        val dialog = Dialog(context)
-        dialog.setContentView(layout)
-        dialog.setCanceledOnTouchOutside(isCanceledOnTouchOutside)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT
-        )
-        return dialog
-    }
+//    fun onCreateDialog(
+//        context: Context,
+//        layout: Int,
+//        isCanceledOnTouchOutside: Boolean = false
+//    ): Dialog {
+//        val dialog = Dialog(context)
+//        dialog.setContentView(layout)
+//        dialog.setCanceledOnTouchOutside(isCanceledOnTouchOutside)
+//        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//        dialog.window!!.setLayout(
+//            WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT
+//        )
+//        return dialog
+//    }
+//
+//    fun onCreateBottomSheetDialog(
+//        context: Context,
+//        dialog_update_version: Int,
+//        isCanceledOnTouchOutside: Boolean = true
+//    ): Dialog {
+//        val dialogRate =
+//            BottomSheetDialog(context, R.style.BottomSheetDialogTheme)
+//        dialogRate.setContentView(dialog_update_version)
+//        dialogRate.setCanceledOnTouchOutside(isCanceledOnTouchOutside)
+//        dialogRate.window!!.setLayout(
+//            ViewGroup.LayoutParams.MATCH_PARENT,
+//            ViewGroup.LayoutParams.WRAP_CONTENT
+//        )
+//        dialogRate.window!!.setGravity(Gravity.BOTTOM)
+//        dialogRate.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//        return dialogRate
+//    }
 
-    fun onCreateBottomSheetDialog(
-        context: Context,
-        dialog_update_version: Int,
-        isCanceledOnTouchOutside: Boolean = true
-    ): Dialog {
-        val dialogRate =
-            BottomSheetDialog(context, R.style.BottomSheetDialogTheme)
-        dialogRate.setContentView(dialog_update_version)
-        dialogRate.setCanceledOnTouchOutside(isCanceledOnTouchOutside)
-        dialogRate.window!!.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        dialogRate.window!!.setGravity(Gravity.BOTTOM)
-        dialogRate.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        return dialogRate
-    }
-
-    fun isInternetAvailable(context: Context): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)!!.state == NetworkInfo.State.CONNECTED || connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)!!.state == NetworkInfo.State.CONNECTED
-    }
-
-    fun createFileShareIntent(chooserTitle: String?, fileUri: Uri?): Intent? {
-        val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri)
-        shareIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-        shareIntent.type = "*/*"
-        return Intent.createChooser(shareIntent, chooserTitle)
-    }
-
-    fun copyToClipboard(context: Context, url: String) {
-        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText("URL", url)
-        clipboard.setPrimaryClip(clip)
-    }
-
-    fun openInPinterest(videoUrl: String, context: Context) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("pinterest://video?url=$videoUrl"))
-        val packageManager = context.packageManager
-        if (intent.resolveActivity(packageManager) != null) {
-            context.startActivity(intent)
-        } else {
-            // Handle case where Pinterest app is not installed on the device
-        }
-    }
-
-    fun openInFacebook(videoUrl: String, context: Context) {
-        val facebookAppIntent = context.packageManager.getLaunchIntentForPackage("com.facebook.katana")
-        if (facebookAppIntent != null) {
-            val facebookVideoIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
-//            facebookVideoIntent.setPackage("com.facebook.katana")
-            context.startActivity(facebookVideoIntent)
-        } else {
-            // Chưa cài đặt Facebook app
-            val openInBrowserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
-            context.startActivity(openInBrowserIntent)
-        }
-    }
-
-    fun openInTiktok(videoUrl: String, context: Context) {
-        val facebookAppIntent = context.packageManager.getLaunchIntentForPackage(Constants.PACKAGE_TIKTOK)
-        if (facebookAppIntent != null) {
-            val facebookVideoIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
-            facebookVideoIntent.setPackage(Constants.PACKAGE_TIKTOK)
-            context.startActivity(facebookVideoIntent)
-        } else {
-            // Chưa cài đặt Facebook app
-            val openInBrowserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
-            context.startActivity(openInBrowserIntent)
-        }
-    }
-
-    fun openInApp(videoUrl: String, context: Context, packageApp: String) {
-        val facebookAppIntent = context.packageManager.getLaunchIntentForPackage(packageApp)
-        if (facebookAppIntent != null) {
-            val facebookVideoIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
-            facebookVideoIntent.setPackage(packageApp)
-            context.startActivity(facebookVideoIntent)
-        } else {
-            // Chưa cài đặt Facebook app
-            val openInBrowserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
-            context.startActivity(openInBrowserIntent)
-        }
-    }
+//    fun isInternetAvailable(context: Context): Boolean {
+//        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//        return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)!!.state == NetworkInfo.State.CONNECTED || connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)!!.state == NetworkInfo.State.CONNECTED
+//    }
+//
+//    fun createFileShareIntent(chooserTitle: String?, fileUri: Uri?): Intent? {
+//        val shareIntent = Intent(Intent.ACTION_SEND)
+//        shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri)
+//        shareIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+//        shareIntent.type = "*/*"
+//        return Intent.createChooser(shareIntent, chooserTitle)
+//    }
+//
+//    fun copyToClipboard(context: Context, url: String) {
+//        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+//        val clip = ClipData.newPlainText("URL", url)
+//        clipboard.setPrimaryClip(clip)
+//    }
+//
+//    fun openInPinterest(videoUrl: String, context: Context) {
+//        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("pinterest://video?url=$videoUrl"))
+//        val packageManager = context.packageManager
+//        if (intent.resolveActivity(packageManager) != null) {
+//            context.startActivity(intent)
+//        } else {
+//            // Handle case where Pinterest app is not installed on the device
+//        }
+//    }
+//
+//    fun openInFacebook(videoUrl: String, context: Context) {
+//        val facebookAppIntent = context.packageManager.getLaunchIntentForPackage("com.facebook.katana")
+//        if (facebookAppIntent != null) {
+//            val facebookVideoIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
+////            facebookVideoIntent.setPackage("com.facebook.katana")
+//            context.startActivity(facebookVideoIntent)
+//        } else {
+//            // Chưa cài đặt Facebook app
+//            val openInBrowserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
+//            context.startActivity(openInBrowserIntent)
+//        }
+//    }
+//
+//    fun openInTiktok(videoUrl: String, context: Context) {
+//        val facebookAppIntent = context.packageManager.getLaunchIntentForPackage(Constants.PACKAGE_TIKTOK)
+//        if (facebookAppIntent != null) {
+//            val facebookVideoIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
+//            facebookVideoIntent.setPackage(Constants.PACKAGE_TIKTOK)
+//            context.startActivity(facebookVideoIntent)
+//        } else {
+//            // Chưa cài đặt Facebook app
+//            val openInBrowserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
+//            context.startActivity(openInBrowserIntent)
+//        }
+//    }
+//
+//    fun openInApp(videoUrl: String, context: Context, packageApp: String) {
+//        val facebookAppIntent = context.packageManager.getLaunchIntentForPackage(packageApp)
+//        if (facebookAppIntent != null) {
+//            val facebookVideoIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
+//            facebookVideoIntent.setPackage(packageApp)
+//            context.startActivity(facebookVideoIntent)
+//        } else {
+//            // Chưa cài đặt Facebook app
+//            val openInBrowserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
+//            context.startActivity(openInBrowserIntent)
+//        }
+//    }
 
     fun setIsDownloadWithWIFIOnlySharePreference(context: Context, isDownloadWithWIFIOnly: Boolean) {
         val prefs = context.getSharedPreferences("InitAppPref", Context.MODE_PRIVATE)
@@ -220,13 +220,13 @@ object Utils {
         return mDLDir
     }
 
-    fun openFolder(context : Context) {
-        val path = Environment.getExternalStorageDirectory().toString() + "/" + "Downloads" + "/"
-        val uri = Uri.parse(path)
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.setDataAndType(uri, "*/*")
-        context.startActivity(intent)
-    }
+//    fun openFolder(context : Context) {
+//        val path = Environment.getExternalStorageDirectory().toString() + "/" + "Downloads" + "/"
+//        val uri = Uri.parse(path)
+//        val intent = Intent(Intent.ACTION_PICK)
+//        intent.setDataAndType(uri, "*/*")
+//        context.startActivity(intent)
+//    }
 
     fun formatSizeOfMemory(size: Long): String {
         var newSizeOfMemory = size.toDouble()
@@ -274,4 +274,27 @@ object Utils {
         mLastClickTime = SystemClock.elapsedRealtime()
         return false
     }
+
+    fun goToCHPlay(context: Context) {
+        val appPackageName: String =
+            context.packageName // getPackageName() from Context or Activity object
+        try {
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=$appPackageName")
+                )
+            )
+        } catch (anfe: ActivityNotFoundException) {
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
+                )
+            )
+        }
+    }
+
+
+
 }

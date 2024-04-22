@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/clItemDetails"
+    android:id="@+id/clDownloadingVideo"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/bg_dialog_list_folder"
         android:paddingHorizontal="@dimen/_12sdp"
         android:paddingBottom="@dimen/_10sdp"
@@ -16,31 +16,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieViewLoading"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:lottie_colorFilter="@color/color_item_primary"
-            app:layout_constraintDimensionRatio="1"
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_close_new"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.7"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/anim_downloading_file_2" />
+            app:tint="@color/color_text_of_item_file" />
 
         <TextView
+            android:id="@+id/tvProgressDownload"
+            android:layout_width="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/font_rubik_medium"
+            android:text="0.0%"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/_30ssp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Video is Downloading"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/txt_video_is_downloading"
             android:textSize="@dimen/_15ssp"
             android:textColor="@color/color_black"
             android:textStyle="bold"
             android:fontFamily="@font/font_rubik_regular"
-            app:layout_constraintBottom_toBottomOf="@+id/lottieViewLoading"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvProgressDownload"/>
+
+        <TextView
+            android:id="@+id/tvDesDownloadState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/txt_your_video_is_downloading"
+            android:textAlignment="center"
+            android:textColor="@color/color_text_download"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

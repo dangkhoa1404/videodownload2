@@ -18,10 +18,7 @@ class PermissionManager(var context: Context) {
                 context,
                 Manifest.permission.READ_MEDIA_VIDEO
             ) != PackageManager.PERMISSION_DENIED
-                    && ContextCompat.checkSelfPermission(
-                context,
-                Manifest.permission.READ_MEDIA_IMAGES
-            ) != PackageManager.PERMISSION_DENIED
+
         } else {
             ContextCompat.checkSelfPermission(
                 context,

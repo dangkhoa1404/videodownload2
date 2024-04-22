@@ -22,4 +22,16 @@ class SharedPreferences(context: Context) {
             putInt(Constants.VIEW_TYPE, value)
         }
 
+    var countTimeDenyPer
+        get() = sharedPreferences.getInt(Constants.COUNT_TIME_DENY_PER, 0)
+        set(value) = sharedPreferences.edit {
+            putInt(Constants.COUNT_TIME_DENY_PER, value)
+        }
+
+    var countTimeDenyNotifyPer
+        get() = sharedPreferences.getInt(Constants.COUNT_TIME_DENY_NOTIFY_PER, 0)
+        set(value) = sharedPreferences.edit {
+            putInt(Constants.COUNT_TIME_DENY_NOTIFY_PER, value)
+        }
+
 }

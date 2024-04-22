@@ -91,6 +91,7 @@ class LanguageActivity : BaseActivity() {
         language.apply {
             setCurrentFlag(mLanguages[mPosCheck].icon)
             isSetLanguage()
+            setLanguageName(mLanguages[mPosCheck].name)
             setIOSCountryData(mLanguages[mPosCheck].locale)
             flagByCountry = mLanguages[mPosCheck].icon
         }

@@ -292,11 +292,38 @@
 
     <string name="txt_are_you_sure_you_want_to_delete_it">Are you sure you want to delete it?</string>
     <string name="txt_cancel_new">Cancel</string>
+    <string name="txt_ok_new">OK</string>
+    <string name="txt_setting_new">SETTING</string>
     <string name="txt_format">Format</string>
     <string name="txt_resolution">Resolution</string>
     <string name="txt_coming_soon">Coming Soon…</string>
     <string name="txt_video_is_downloading">Video is Downloading</string>
     <string name="txt_downloading_complete">Downloading Complete</string>
+    <string name="txt_downloading_fail">Downloading Fail</string>
     <string name="txt_your_video_downloading_is_completed_go_to_downloads_and_watch_the_video">Your video downloading is completed. Go to downloads and watch the video</string>
+    <string name="txt_your_video_downloading_is_failed">Your video downloading is failed. Please try another videos</string>
+    <string name="txt_your_video_is_downloading">Your video is downloading</string>
+    <string name="txt_downloading_started">Downloading Started</string>
+    <string name="txt_sorry_error_occured_please_try_again">Sorry Error occurred, Please try again</string>
+    <string name="txt_permisison_required">Permission required</string>
+    <string name="txt_permisison_denied">Permission denied</string>
+    <string name="txt_to_save_your_videos_we_need_storage">To save your videos, we need storage permisision for a better experience</string>
+    <string name="txt_to_show_you_the_realtime_download_progress_notification">To show you the realtime download progress notification, we need Notification permission for a better experience</string>
+    <string name="txt_go">GO</string>
+    <string name="txt_remove_ads">REMOVE ADS</string>
+    <string name="txt_general">General</string>
+
+    <string name="txt_rate_us">Rate us</string>
+    <string name="txt_watch_later">Watch Later</string>
+    <string name="txt_incognito_mode">Incognito Mode</string>
+    <string name="txt_history">History</string>
+    <string name="txt_private_vault">Private Vault</string>
+    <string name="txt_bookmark">Bookmark</string>
+    <string name="txt_storage_location">Storage Location</string>
+    <string name="txt_private_default">Private Default</string>
+    <string name="txt_set_as_default_browser">Set as default browser</string>
+    <string name="txt_enjoy_video_downloader">Enjoy Video Downloader?</string>
+    <string name="txt_let_us_know_how_we_are_doing">Let us know how we are doing?</string>
+    <string name="txt_the_best_we_get">The best we get :)</string>
 
 </resources>
